@@ -11,6 +11,8 @@ public class game {
 		frame.setResizable(false);
 		frame.setSize(700, 800);
 		frame.setVisible(true);
+
+		system.out.println(".jigifj")
 		
 	}
 }
