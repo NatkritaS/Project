@@ -12,8 +12,7 @@ public class game {
 		frame.setSize(700, 800);
 		frame.setVisible(true);
 
-		system.out.println("อจน")
-		system.out.println("I hate อจน")
+		
 
 
 		
