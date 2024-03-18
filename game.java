@@ -12,7 +12,7 @@ public class game {
 		frame.setSize(700, 800);
 		frame.setVisible(true);
 
-		system.out.println(".jigifj")
+		system.out.println("อจน")
 		
 	}
 }
