@@ -13,6 +13,9 @@ public class game {
 		frame.setVisible(true);
 
 		system.out.println("อจน")
+		system.out.println("I hate อจน")
+
+
 		
 	}
 }
