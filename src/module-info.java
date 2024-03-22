@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module AnimalAdventure_project {
-}
