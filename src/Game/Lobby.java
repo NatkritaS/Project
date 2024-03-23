@@ -38,7 +38,7 @@ public class Lobby {
 
         button1 = new JButton();
         button1.setIcon(play);
-        button1.setBorderPainted(false);
+        button1.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
         button1.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button1.setFocusPainted(false);
         button1.setOpaque(false);
@@ -47,6 +47,7 @@ public class Lobby {
         
         button_howto = new JButton();
         button_howto.setIcon(how);
+        button_howto.setBorderPainted(false); // ทำให้กรอบปุ่มหายไป
         button_howto.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button_howto.setFocusPainted(false);
         button_howto.setOpaque(false);
@@ -55,6 +56,7 @@ public class Lobby {
         
         button_score = new JButton();
         button_score.setIcon(score);
+        button_score.setBorderPainted(false); // ทำให้กรอบปุ่มหายไป
         button_score.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button_score.setFocusPainted(false);
         button_score.setOpaque(false);
@@ -64,6 +66,7 @@ public class Lobby {
         
         button_exit = new JButton();
         button_exit.setIcon(exit);
+        button_exit.setBorderPainted(false); // ทำให้กรอบปุ่มหายไป
         button_exit.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button_exit.setFocusPainted(false);
         button_exit.setOpaque(false);
