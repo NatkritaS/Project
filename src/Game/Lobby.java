@@ -1,4 +1,4 @@
-package animalAdventure;
+package Game;
 
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -20,12 +20,12 @@ public class Lobby {
     private boolean isCharacterShown = false; // ทำให้ภาพอันที่สองขึ้น
 
     public Lobby() {
-        ImageIcon background = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\background_lobby.png");
-        ImageIcon start1 = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\start_button.png");
-        ImageIcon how = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\how_button.png");
-        ImageIcon score = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\score_button.png");
-        ImageIcon exit = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\exit_button.png");
-        ImageIcon BG_Charac = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\background_character.png");
+        ImageIcon background = new ImageIcon("src\\Image\\background_lobby.png");
+        ImageIcon start1 = new ImageIcon("src\\Image\\start_button.png");
+        ImageIcon how = new ImageIcon("src\\Image\\how_button.png");
+        ImageIcon score = new ImageIcon("src\\Image\\score_button.png");
+        ImageIcon exit = new ImageIcon("src\\Image\\exit_button.png");
+        ImageIcon BG_Charac = new ImageIcon("src\\Image\\background_character.png");
 
         frame = new JFrame();
         frame.setTitle("AnimalAdventure");
@@ -97,5 +97,5 @@ public class Lobby {
             }
         });
     }
+    }
 
-}

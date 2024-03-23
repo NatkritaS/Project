@@ -1,5 +1,4 @@
-package animalAdventure;
-
+package Game;
 import javax.swing.JFrame;
 
 public class Main {

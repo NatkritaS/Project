@@ -1,8 +1,8 @@
+package Game;
+
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import animalAdventure.Lobby;
 
 public class Character_page {
 	Icon BG_Charac ;
