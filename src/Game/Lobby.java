@@ -21,7 +21,7 @@ public class Lobby {
 
     public Lobby() {
         ImageIcon background = new ImageIcon("src\\Image\\background_lobby.png");
-        ImageIcon start1 = new ImageIcon("src\\Image\\start_button.png");
+        ImageIcon play = new ImageIcon("src\\Image\\play_button.png");
         ImageIcon how = new ImageIcon("src\\Image\\how_button.png");
         ImageIcon score = new ImageIcon("src\\Image\\score_button.png");
         ImageIcon exit = new ImageIcon("src\\Image\\exit_button.png");
@@ -37,7 +37,7 @@ public class Lobby {
         panel.setLayout(null);
 
         button1 = new JButton();
-        button1.setIcon(start1);
+        button1.setIcon(play);
         button1.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button1.setFocusPainted(false);
         button1.setOpaque(false);
