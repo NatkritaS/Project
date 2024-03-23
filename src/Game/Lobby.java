@@ -38,6 +38,7 @@ public class Lobby {
 
         button1 = new JButton();
         button1.setIcon(play);
+        button1.setBorderPainted(false);
         button1.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button1.setFocusPainted(false);
         button1.setOpaque(false);
