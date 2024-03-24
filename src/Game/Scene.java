@@ -27,6 +27,6 @@ public class Scene {
         panel.add(screen, BorderLayout.CENTER);
 
         frame.add(panel);
-        frame.pack();
+        
     }
 }
