@@ -89,13 +89,6 @@ public class Character_page {
         panel.add(screen);
         frame.add(panel);
         
-        dragon_choose.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // ปิดหน้าเดิม
-
-                // เปลี่ยนหน้า
-                Scene dragon = new Scene();
-        
         
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -105,8 +98,5 @@ public class Character_page {
             }
         });
 
-            }
-        });
 	}
-}
-            
+}	
