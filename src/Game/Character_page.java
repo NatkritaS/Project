@@ -28,7 +28,7 @@ public class Character_page {
         
         
         
-        ImageIcon choose_dragon = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\choose_dragon.png");
+        ImageIcon choose_dragon = new ImageIcon("src\\images\\choose_dragon.png");
 		dragon_choose = new JButton();
 		dragon_choose.setIcon(choose_dragon);
 		dragon_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
@@ -38,7 +38,7 @@ public class Character_page {
 		dragon_choose.setBounds(20, 250, 200, 250);
         panel.add(dragon_choose);
         
-        ImageIcon choose_chubbybird = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\choose_chubbybird.png");
+        ImageIcon choose_chubbybird = new ImageIcon("src\\images\\choose_chubbybird.png");
         chubbybird_choose = new JButton();
         chubbybird_choose.setIcon(choose_chubbybird);
         chubbybird_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
@@ -48,17 +48,17 @@ public class Character_page {
 		chubbybird_choose.setBounds(245, 250, 210, 250);
         panel.add(chubbybird_choose);
         
-        ImageIcon choose_cutieghost = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\choose_cutieghost.png");
+        ImageIcon choose_cutieghost = new ImageIcon("src\\images\\choose_cutieghost.png");
         cutieghost_choose = new JButton();
         cutieghost_choose.setIcon(choose_cutieghost);
-        cutieghost_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
+        
         cutieghost_choose.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         cutieghost_choose.setFocusPainted(false);
         cutieghost_choose.setOpaque(false);
 		cutieghost_choose.setBounds(470, 250, 200, 250);
         panel.add(cutieghost_choose);
         
-        ImageIcon BG_Charac = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\background_character.png");
+        ImageIcon BG_Charac = new ImageIcon("src\\images\\background_character.png");
         screen = new JLabel();
         screen.setIcon(BG_Charac);
         screen.setBounds(0, 0, 700, 800);

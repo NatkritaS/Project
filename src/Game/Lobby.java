@@ -14,11 +14,11 @@ public class Lobby {
     private JButton button_exit;
 
     public Lobby() {
-        ImageIcon background = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\background_lobby.png");
-        ImageIcon start1 = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\play_button.png");
-        ImageIcon how = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\how_button.png");
-        ImageIcon score = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\score_button.png");
-        ImageIcon exit = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\exit_button.png");
+        ImageIcon background = new ImageIcon("src\\images\\background_lobby.png");
+        ImageIcon start1 = new ImageIcon("src\\images\\play_button.png");
+        ImageIcon how = new ImageIcon("src\\images\\how_button.png");
+        ImageIcon score = new ImageIcon("src\\images\\score_button.png");
+        ImageIcon exit = new ImageIcon("src\\images\\exit_button.png");
 
         frame = new JFrame();
         frame.setTitle("AnimalAdventure");
@@ -31,9 +31,13 @@ public class Lobby {
 
         button1 = new JButton();
         button1.setIcon(start1);
+
         button1.setContentAreaFilled(false);
         button1.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
         button1.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
+
+        button1.setContentAreaFilled(true); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
+
         button1.setFocusPainted(false);
         button1.setOpaque(false);
         button1.setBounds(250, 320, 200, 50);
@@ -41,9 +45,13 @@ public class Lobby {
 
         button_howto = new JButton();
         button_howto.setIcon(how);
+
         button_howto.setContentAreaFilled(false);
         button_howto.setBorderPainted(false); // ทำให้กรอบปุ่มหายไป
         button_howto.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
+
+        button_howto.setContentAreaFilled(true); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
+
         button_howto.setFocusPainted(false);
         button_howto.setOpaque(false);
         button_howto.setBounds(250, 380, 200, 50);
