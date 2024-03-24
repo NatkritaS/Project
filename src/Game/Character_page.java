@@ -54,7 +54,7 @@ public class Character_page {
         ImageIcon choose_cutieghost = new ImageIcon("src\\images\\choose_cutieghost.png");
         cutieghost_choose = new JButton();
         cutieghost_choose.setIcon(choose_cutieghost);
-        
+        cutieghost_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
         cutieghost_choose.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         cutieghost_choose.setFocusPainted(false);
         cutieghost_choose.setOpaque(false);
