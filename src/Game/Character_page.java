@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.ImageIcon;
 
+
 import javax.swing.*;
 
 public class Character_page {
@@ -15,6 +16,7 @@ public class Character_page {
 
 	
 	public Character_page() {
+
 		frame = new JFrame();
 		frame.setSize(700, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +31,7 @@ public class Character_page {
         ImageIcon choose_dragon = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\choose_dragon.png");
 		dragon_choose = new JButton();
 		dragon_choose.setIcon(choose_dragon);
+		dragon_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
 		dragon_choose.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
 		dragon_choose.setFocusPainted(false);
 		dragon_choose.setOpaque(false);
@@ -38,6 +41,7 @@ public class Character_page {
         ImageIcon choose_chubbybird = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\choose_chubbybird.png");
         chubbybird_choose = new JButton();
         chubbybird_choose.setIcon(choose_chubbybird);
+        chubbybird_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
         chubbybird_choose.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
 		chubbybird_choose.setFocusPainted(false);
 		chubbybird_choose.setOpaque(false);
@@ -47,6 +51,7 @@ public class Character_page {
         ImageIcon choose_cutieghost = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\choose_cutieghost.png");
         cutieghost_choose = new JButton();
         cutieghost_choose.setIcon(choose_cutieghost);
+        cutieghost_choose.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
         cutieghost_choose.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         cutieghost_choose.setFocusPainted(false);
         cutieghost_choose.setOpaque(false);
@@ -59,5 +64,6 @@ public class Character_page {
         screen.setBounds(0, 0, 700, 800);
         panel.add(screen);
         frame.add(panel);
+
 	}
 }	
