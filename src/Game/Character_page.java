@@ -61,10 +61,7 @@ public class Character_page {
 		cutieghost_choose.setBounds(470, 250, 200, 250);
         panel.add(cutieghost_choose);
         
-<<<<<<< HEAD
 
-=======
->>>>>>> 79a4e552b4935119bb920a45efb88d7a082e7253
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
@@ -74,15 +71,11 @@ public class Character_page {
         button_back.setOpaque(false);
         button_back.setBounds(590 ,5 ,95, 20);
         panel.add(button_back);
-<<<<<<< HEAD
 
-        ImageIcon BG_Charac = new ImageIcon("src\\images\\background_character.png");
 
-=======
-        
+    
         ImageIcon BG_Charac = new ImageIcon("src\\images\\background_character.png");
         
->>>>>>> 79a4e552b4935119bb920a45efb88d7a082e7253
         screen = new JLabel();
         screen.setIcon(BG_Charac);
         screen.setBounds(0, 0, 700, 800);
@@ -98,5 +91,13 @@ public class Character_page {
             }
         });
 
+        dragon_choose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // เปลี่ยนไปหน้าแรก
+                Scene s = new Scene();
+                
+                frame.dispose(); // ปิดหน้าปัจจุบัน
+            }
+        });
 	}
 }	
