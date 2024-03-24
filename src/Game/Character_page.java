@@ -61,8 +61,8 @@ public class Character_page {
 		cutieghost_choose.setBounds(470, 250, 200, 250);
         panel.add(cutieghost_choose);
         
-<<<<<<< HEAD
-        ImageIcon back = new ImageIcon("C:\\Users\\Pc\\Documents\\GitHub\\Project\\src\\images\\back_button.png");
+
+        ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
         button_back.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
@@ -71,11 +71,9 @@ public class Character_page {
         button_back.setOpaque(false);
         button_back.setBounds(590 ,5 ,95, 20);
         panel.add(button_back);
-        
-        ImageIcon BG_Charac = new ImageIcon("D:\\java\\animalAdventure\\src\\images\\background_character.png");
-=======
+
         ImageIcon BG_Charac = new ImageIcon("src\\images\\background_character.png");
->>>>>>> f0030419c0723bed52032e010a724df5c01e3447
+
         screen = new JLabel();
         screen.setIcon(BG_Charac);
         screen.setBounds(0, 0, 700, 800);
