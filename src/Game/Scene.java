@@ -2,25 +2,26 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Scene {
-
 
     private JLabel screen;
     private ArrayList<ImageIcon> backgrounds;
     private JFrame frame;
     private JPanel panel;
-    private int index;
+    private Random random;
 
     public Scene() {
         frame = new JFrame();
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.setVisible(true);
 
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -32,48 +33,45 @@ public class Scene {
         backgrounds.add(new ImageIcon("src/images/background_sunny.png"));
         backgrounds.add(new ImageIcon("src/images/background_sunny2.png"));
         backgrounds.add(new ImageIcon("src/images/background_sunny3.png"));
+
+        random = new Random();
+
+        setBackground();
+        startBackgroundTimer();
         
-        setBackground(); 
+        frame.add(panel);
+        frame.setVisible(true);
     }
-      
-        
+
     private void setBackground() {
         screen = new JLabel();
-        screen.setBounds(0, 0, 700 * backgrounds.size(), 800);
         panel.add(screen, BorderLayout.CENTER);
+        changeBackground();
+    }
 
-        frame.addKeyListener(new KeyListener() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                 // ตรวจการกดปุ่ม ->
-                    if (index < backgrounds.size() - 1) {
-                        index++; 
-                    } else {
-                        index = 0; 
-                    }
-                    screen.setIcon(backgrounds.get(index)); 
-                }
-            }
-            public void keyTyped(KeyEvent e) {}
-            public void keyReleased(KeyEvent e) {}
-        });
-
+    private void changeBackground() {
+        int index = random.nextInt(backgrounds.size());
         screen.setIcon(backgrounds.get(index));
+    }
 
-        frame.add(panel);
+    private void startBackgroundTimer() {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                changeBackground();
+            }
+        };
+        // เริ่มต้น Timer สำหรับสุ่มรูปภาพทุก 3 วินาที
+        timer.schedule(task, 0, 3000);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Scene();
+            }
+        });
     }
 }
-      
-	
-        
-
-        
-        
-        
-        
-  
-        
-  
-
-	
-
