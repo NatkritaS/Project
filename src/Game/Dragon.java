@@ -1,6 +1,7 @@
 package Game;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
 
@@ -42,4 +43,17 @@ public class Dragon {
     	xPosition -= gravity;
     	return xPosition;
     }
-}
+    public void CheckUpDown(KeyEvent k) {
+    	int press = k.getKeyCode();
+    	if ( press == KeyEvent.VK_UP) {
+    		flyup();
+    	}
+    	else if ( press == KeyEvent.VK_DOWN) {
+    		flyDown();
+    		
+    	}
+    }
+
+		
+	}
+
