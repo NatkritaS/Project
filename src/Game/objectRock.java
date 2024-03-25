@@ -14,10 +14,6 @@ public class objectRock {
 	private Scene scene;
 	
 	
-	
-	public void paintComponent(Graphics g) {
-		
-		g.fillRect(0, 0, width,height);
 		
 	}
 	
@@ -26,4 +22,4 @@ public class objectRock {
 	
 	
 
-}
+

@@ -10,12 +10,13 @@ public class Dragon {
     private int yPosition;
     private int width = 700;
     private int height = 800;
-    private Image dragonImage;
-    private int gravity = 5;
+    private ImageIcon dragonImage;
+    private int gravity = 10;
 
     public Dragon() {
         this.xPosition = 100;
-        this.yPosition = 400;
+        this.yPosition = 350;
+        
     }
 
     public void moveTo(int x, int y) {
@@ -31,17 +32,18 @@ public class Dragon {
         return yPosition;
     }
 
-    public Image getDragonImage() {
-        ImageIcon dragon = new ImageIcon("src/images/dragon.png");
-    	return dragonImage;
+    public static Icon getDragonImage() {
+    	ImageIcon dragonImage = new ImageIcon("src/images/dragon.png");
+		return dragonImage;
+        
     }
     public int flyup() {
-    	yPosition += gravity;
-    	return yPosition;
+    	yPosition -= gravity;
+    	return xPosition;
     }
     public int flyDown() {
-    	xPosition -= gravity;
-    	return xPosition;
+    	yPosition += gravity;
+    	return yPosition;
     }
     public void CheckUpDown(KeyEvent k) {
     	int press = k.getKeyCode();
