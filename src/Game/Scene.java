@@ -1,11 +1,13 @@
 package Game;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
  
 public class Scene {
-    private JFrame frame;
+    protected static int Positiony = 0;
+	private JFrame frame;
     private JPanel panel;
     private JLabel dragonLabel;
     private ImageIcon background;
@@ -37,18 +39,25 @@ public class Scene {
  
         frame.add(panel);
         frame.setVisible(true);
- 
-        frame.addKeyListener(new KeyListener() {
-            public void keyTyped(KeyEvent e) {}
-            
-            public void keyPressed(KeyEvent e) {
-                d.CheckUpDown(e);
-                dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 130, 100);
-                panel.repaint();
-            }
- 
-            public void keyReleased(KeyEvent e) {}
+   
+        frame.addKeyListener(new KeyAdapter() {
+        	
+        	public void keyPressed(KeyEvent e) {
+        	    int key = e.getKeyCode();
+        	    int key1 = panel.getHeight() - d.getDragonHeight(); // คำนวณความสูงสูงสุดที่มังกรสามารถอยู่ได้
+        	    if (key == KeyEvent.VK_UP) {
+        	    	if (Positiony - 10 >= 0) {
+        	            Positiony -= 10;
+        	    	}
+        	    } else if (key == KeyEvent.VK_DOWN) {
+        	    	if (Positiony + 10 <= key1) {
+        	            Positiony += 10;
+        	        }
+        	    }
+        	    dragonLabel.setBounds(d.getxPosition(), Positiony, 130, 100);
+        	    panel.revalidate();
+        	    panel.repaint();
+        	}
         });
     }
 }
- 
