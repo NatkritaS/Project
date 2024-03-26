@@ -40,10 +40,14 @@ public class Dragon {
     public int flyup() {
     	yPosition -= gravity;
     	return xPosition;
+    	
     }
     public int flyDown() {
     	yPosition += gravity;
     	return yPosition;
+    }
+    public int flyStaystill() {
+    	return yPosition + 0;
     }
     public void CheckUpDown(KeyEvent k) {
     	int press = k.getKeyCode();
