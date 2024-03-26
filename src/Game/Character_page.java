@@ -17,7 +17,6 @@ public class Character_page  {
 	private JButton cutieghost_choose;
 	private JButton button_back;
 	private  Lobby lobby;
-	private Scene scene;
 
 	
 	public Character_page(JFrame j) {
@@ -97,9 +96,10 @@ public class Character_page  {
 
         dragon_choose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	frame.getContentPane().removeAll();
-            	frame.repaint();
-                scene = new Scene(frame);
+                
+                Scene s = new Scene();
+                
+                frame.dispose(); // ปิดหน้าปัจจุบัน
             }
         });
         
