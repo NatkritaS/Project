@@ -12,6 +12,7 @@ public class Lobby {
     private JButton button_howto;
     private JButton button_score;
     private JButton button_exit;
+    private  Character_page characterPage;
 
     public Lobby() {
         ImageIcon background = new ImageIcon("src\\images\\background_lobby.png");
@@ -87,13 +88,15 @@ public class Lobby {
 
         frame.add(panel);
         frame.setVisible(true);
-
+        
+        //set button to character_page
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // ปิดหน้าเดิม
-
-                // เปลี่ยนหน้า
-                Character_page characterPage = new Character_page();
+            	frame.getContentPane().removeAll();
+            	frame.repaint();
+                characterPage = new Character_page(frame);
+                
+                
             }
         });
     }

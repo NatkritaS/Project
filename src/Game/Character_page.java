@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Character_page {
+public class Character_page  {
 	
 	private JFrame frame;
     private JLabel screen;
@@ -18,9 +18,11 @@ public class Character_page {
 	private JButton button_back;
 
 	
-	public Character_page() {
+	public Character_page(JFrame j) {
 
-		frame = new JFrame();
+		//frame = new JFrame();
+		frame = j;
+		
 		frame.setSize(700, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -80,7 +82,9 @@ public class Character_page {
         screen.setIcon(BG_Charac);
         screen.setBounds(0, 0, 700, 800);
         panel.add(screen);
+        j.add(panel);
         frame.add(panel);
+        frame.setVisible(true);
         
         
         button_back.addActionListener(new ActionListener() {
@@ -99,5 +103,6 @@ public class Character_page {
                 frame.dispose(); // ปิดหน้าปัจจุบัน
             }
         });
+        
 	}
 }	
