@@ -16,7 +16,7 @@ public class Dragon {
     public Dragon() {
         this.xPosition = 100;
         this.yPosition = 350;
-        
+        this.dragonImage = new ImageIcon("src/images/Dragon.png");
     }
 
     public void moveTo(int x, int y) {
@@ -39,12 +39,12 @@ public class Dragon {
     }
     public int flyup() {
     	yPosition -= gravity;
-    	return xPosition;
+    	return yPosition;
     	
     }
     public int flyDown() {
     	yPosition += gravity;
-    	return yPosition;
+    	return xPosition;
     }
     public int flyStaystill() {
     	return yPosition + 0;
@@ -59,7 +59,11 @@ public class Dragon {
     		
     	}
     }
-
-		
+    public int getDragonHeight() {
+        if (dragonImage != null) { // dragonImageต้องไม่เป็นnullก่อนเรียกใช้
+            return dragonImage.getIconHeight();
+        } else {
+            return 0;
+		} 	
 	}
-
+}
