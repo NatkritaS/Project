@@ -16,11 +16,11 @@ public class Character_page  {
 	private JButton chubbybird_choose;
 	private JButton cutieghost_choose;
 	private JButton button_back;
+	private  Lobby lobby;
+	private Scene scene;
 
 	
 	public Character_page(JFrame j) {
-
-		//frame = new JFrame();
 		frame = j;
 		
 		frame.setSize(700, 800);
@@ -82,25 +82,24 @@ public class Character_page  {
         screen.setIcon(BG_Charac);
         screen.setBounds(0, 0, 700, 800);
         panel.add(screen);
-        j.add(panel);
+        
         frame.add(panel);
         frame.setVisible(true);
         
         
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // เปลี่ยนไปหน้าแรก
-                Lobby l = new Lobby();
-                frame.dispose(); // ปิดหน้าปัจจุบัน
+            	frame.getContentPane().removeAll();
+            	frame.repaint();
+                lobby = new Lobby();
             }
         });
 
         dragon_choose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // เปลี่ยนไปหน้าแรก
-                Scene s = new Scene();
-                
-                frame.dispose(); // ปิดหน้าปัจจุบัน
+            	frame.getContentPane().removeAll();
+            	frame.repaint();
+                scene = new Scene(frame);
             }
         });
         
