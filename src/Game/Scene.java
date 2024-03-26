@@ -1,81 +1,53 @@
 package Game;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Scene {
-	private JLabel screen;
-    private ImageIcon backgrounds;
     private JFrame frame;
     private JPanel panel;
-    private int index;
+    private JLabel dragonLabel;
+    private ImageIcon background;
 
     public Scene() {
         frame = new JFrame();
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+
+        panel = new JPanel() {
+        	// เมดตอดนี้เอไอแก้ให้
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (background != null) {
+                    g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), null);
+                }
+            }
+        };
         
+        panel.setLayout(null);
 
-        panel = new JPanel();
-        panel.setLayout(new BorderLayout());
+        background = new ImageIcon("src/images/background_sunny.png");
 
-        setBackground();
         Dragon d = new Dragon();
-        JLabel dragonLabel = new JLabel(d.getDragonImage());
-        dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 100 , 100);
+        dragonLabel = new JLabel(d.getDragonImage());
+        dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 130 , 100);
         panel.add(dragonLabel);
-        panel.setVisible(true);
-        
+
         frame.add(panel);
         frame.setVisible(true);
-        
+
         frame.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {}
-
-           
+            
             public void keyPressed(KeyEvent e) {
                 d.CheckUpDown(e);
-                dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 200, 100);
+                dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 130, 100);
                 panel.repaint();
             }
+
             public void keyReleased(KeyEvent e) {}
         });
     }
-    
-      
-        
-    private void setBackground() {
-        screen = new JLabel();
-        ImageIcon backgrounds = new ImageIcon("src/images/background_sunny.png");
-        screen.setBackground(null);
-        //screen.setIcon(backgrounds);
-        screen.setBounds(0, 0, 700 , 800);
-        panel.add(screen);
-        
-        
-
-        
-    }
 }
-
-	
-	
-
-      
-	
-        
-
-        
-        
-        
-        
-  
-        
-  
-
-	
-
