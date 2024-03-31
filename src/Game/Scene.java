@@ -4,13 +4,18 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
  
 public class Scene {
     protected static int Positiony = 0;
+    
 	private JFrame frame;
     private JPanel panel;
     private JLabel dragonLabel;
     private ImageIcon background;
+	protected ImageIcon rock;
+	
+	
  
     public Scene() {
         frame = new JFrame();
@@ -42,21 +47,26 @@ public class Scene {
    
         frame.addKeyListener(new KeyAdapter() {
         	
+        	private JLabel rockLabel;
+
         	public void keyPressed(KeyEvent e) {
-        	    int key = e.getKeyCode();
-        	    int key1 = panel.getHeight() - d.getDragonHeight(); // คำนวณความสูงสูงสุดที่มังกรสามารถอยู่ได้
-        	    if (key == KeyEvent.VK_UP) {
-        	    	if (Positiony - 10 >= 0) {
-        	            Positiony -= 10;
-        	    	}
-        	    } else if (key == KeyEvent.VK_DOWN) {
-        	    	if (Positiony + 10 <= key1) {
-        	            Positiony += 10;
-        	        }
-        	    }
+                int key = e.getKeyCode();
+                int key1 = panel.getHeight() - d.getDragonHeight(); // คำนวณความสูงสูงสุดที่มังกรสามารถอยู่ได้
+                if (key == KeyEvent.VK_UP) {
+                    if (Positiony - Dragon.GRAVITY >= 0) {
+                        Positiony -= Dragon.GRAVITY;
+                    }
+                    Dragon.flyup();
+                } else if (key == KeyEvent.VK_DOWN) {
+                    if (Positiony + Dragon.GRAVITY <= key1) {
+                        Positiony += Dragon.GRAVITY;
+                    }
+                    Dragon.flyDown();
+                }
         	    dragonLabel.setBounds(d.getxPosition(), Positiony, 130, 100);
         	    panel.revalidate();
         	    panel.repaint();
+        	  
         	}
         });
     }
