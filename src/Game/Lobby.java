@@ -14,14 +14,14 @@ public class Lobby {
     private JButton button_exit;
     private  Character_page characterPage;
 
-    public Lobby() {
+    public Lobby(JFrame f) {
         ImageIcon background = new ImageIcon("src\\images\\background_lobby.png");
         ImageIcon start1 = new ImageIcon("src\\images\\play_button.png");
         ImageIcon how = new ImageIcon("src\\images\\how_button.png");
         ImageIcon score = new ImageIcon("src\\images\\score_button.png");
         ImageIcon exit = new ImageIcon("src\\images\\exit_button.png");
-
-        frame = new JFrame();
+        frame = f;
+        //frame = new JFrame();
         frame.setTitle("AnimalAdventure");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

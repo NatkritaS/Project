@@ -90,7 +90,7 @@ public class Character_page  {
             public void actionPerformed(ActionEvent e) {
             	frame.getContentPane().removeAll();
             	frame.repaint();
-                lobby = new Lobby();
+                lobby = new Lobby(j);
             }
         });
 
@@ -98,9 +98,7 @@ public class Character_page  {
             public void actionPerformed(ActionEvent e) {
                      	frame.getContentPane().removeAll();
                      	frame.repaint();
-                         
-                         
-                Scene s = new Scene();
+                         Scene s = new Scene(frame);
                 
                 
                 //frame.dispose(); // ปิดหน้าปัจจุบัน

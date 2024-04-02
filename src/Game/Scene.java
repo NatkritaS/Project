@@ -13,8 +13,8 @@ public class Scene {
     private JPanel panel;
     private Random random;
 
-    public Scene() {
-        frame = new JFrame();
+    public Scene(JFrame J) {
+    	frame = J;
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -39,11 +39,11 @@ public class Scene {
         rockLabels = new ArrayList<>();
         random = new Random();
         for (int i = 0; i < 4; i++) {
-            int x = random.nextInt(600); // random x ให้อยู่ในเฟรม
-            int y = random.nextInt(500); // random x ให้อยู่ในเฟรม
+            int x = random.nextInt(700); // random x ให้อยู่ในเฟรม
+            int y = random.nextInt(500); // random y ให้อยู่ในเฟรม
 
-            JLabel rockLabel = new JLabel(new ImageIcon("src/images/landRock.png"));
-            rockLabel.setBounds(x, 0, 100, 200);
+            JLabel rockLabel = new JLabel(new ImageIcon("src/images/topRock.png"));
+            rockLabel.setBounds(0, 0, 280, 285);
             rockLabels.add(rockLabel);
             panel.add(rockLabel);
         }
@@ -70,11 +70,11 @@ public class Scene {
         for (JLabel rockLabel : rockLabels) {
             int x = rockLabel.getX();
             if (x <= -20) { //หลุดขอบจอไป -20 หายไปเลย สมมติหินมีขนาด x = 40 เลยจอไปครึ่งนึงหายไปเลย
-                // เซตตำแหน่
+                // เซตตำแหน่ง
                 rockLabel.setLocation(frame.getWidth(), rockLabel.getY());
             } else {
                 // เคลื่อนหินไปทางซ้าย 
-                rockLabel.setLocation(x - 5, rockLabel.getY());
+                rockLabel.setLocation(x - 8, rockLabel.getY());
             }
         }
     }
