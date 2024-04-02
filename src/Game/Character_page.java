@@ -99,9 +99,6 @@ public class Character_page  {
                      	frame.getContentPane().removeAll();
                      	frame.repaint();
                          Scene s = new Scene(frame);
-                
-                
-                //frame.dispose(); // ปิดหน้าปัจจุบัน
             }
         });
         

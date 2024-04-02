@@ -37,32 +37,10 @@ public class objectRock {
 			}
         };
         panel.setVisible(true);
-        random();
-    }
-
-    public void random() {
-        Random r = new Random();
-        int randomPos = r.nextInt(); // สุ่มเลข 0 หรือ 1 เพื่อเลือกภาพหิน
-        if (randomPos == 0) {
-            rock.add(topRock);
-        } else {
-            rock.add(landRock);
-        }
+       
     }
 
     public JPanel getPanel() {
         return panel;
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setSize(700, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-
-        objectRock objectRock = new objectRock();
-        frame.add(objectRock.getPanel());
-
-        frame.setVisible(true);
     }
 }

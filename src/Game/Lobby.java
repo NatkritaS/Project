@@ -21,7 +21,6 @@ public class Lobby {
         ImageIcon score = new ImageIcon("src\\images\\score_button.png");
         ImageIcon exit = new ImageIcon("src\\images\\exit_button.png");
         frame = f;
-        //frame = new JFrame();
         frame.setTitle("AnimalAdventure");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

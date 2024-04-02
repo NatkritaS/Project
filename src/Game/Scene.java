@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,9 +13,11 @@ public class Scene {
     private JFrame frame;
     private JPanel panel;
     private Random random;
+    private Dragon dragon;
+    protected static int Positiony = 0;
 
     public Scene(JFrame J) {
-    	frame = J;
+        frame = J;
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -31,31 +34,44 @@ public class Scene {
 
         background = new ImageIcon("src/images/background_sunny.png");
 
-        Dragon d = new Dragon();
-        dragonLabel = new JLabel(d.getDragonImage());
-        dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 130, 100);
-        panel.add(dragonLabel);
-
         rockLabels = new ArrayList<>();
         random = new Random();
-        for (int i = 0; i < 4; i++) {
-            int x = random.nextInt(700); // random x ให้อยู่ในเฟรม
-            int y = random.nextInt(500); // random y ให้อยู่ในเฟรม
+        for (int i = 0; i < 100; i++) {
+            int x = random.nextInt(600);
+            int y = random.nextInt(500);
 
-            JLabel rockLabel = new JLabel(new ImageIcon("src/images/topRock.png"));
-            rockLabel.setBounds(0, 0, 280, 285);
-            rockLabels.add(rockLabel);
-            panel.add(rockLabel);
+            JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
+            JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
+            JLabel rockLabelTop2 = new JLabel(new ImageIcon("src/images/topRock.png"));
+            JLabel rockLabelLand2 = new JLabel(new ImageIcon("src/images/landRock.png"));
+            rockLabelLand2.setBounds(350, 500, 280, 305);
+            rockLabelLand.setBounds(0, 500, 280, 305);
+            rockLabelTop.setBounds(0, 0, 280, 285);
+            rockLabelTop2.setBounds(350, 0, 280, 285);
+            rockLabels.add(rockLabelTop);
+            rockLabels.add(rockLabelTop2);
+            rockLabels.add(rockLabelLand);
+            rockLabels.add(rockLabelLand2);
+            panel.add(rockLabelLand);
+            panel.add(rockLabelLand2);
+            panel.add(rockLabelTop);
+            panel.add(rockLabelTop2);
         }
-
+        dragon = new Dragon();
+        dragonLabel = new JLabel(dragon.getDragonImage());
+        dragonLabel.setBounds(dragon.getxPosition(), dragon.getyPosition(), 130, 100);
+        panel.add(dragonLabel);
         frame.add(panel);
         frame.setVisible(true);
+
+        // Al แก้ไขให้
+        panel.requestFocus();
 
         // AI generate 
         Thread moveRocksThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(50); // ปรับ speed ของการเคลื่อนที่
+                    Thread.sleep(50);
                     moveRocks();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -63,13 +79,36 @@ public class Scene {
             }
         });
         moveRocksThread.start();
-    }
 
+        // Add KeyListener to the panel
+        panel.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                int key1 = panel.getHeight() - dragon.getDragonHeight();
+
+                if (key == KeyEvent.VK_UP) {
+                    if (Positiony - Dragon.GRAVITY >= 0) {
+                        Positiony -= Dragon.GRAVITY;
+                    }
+                    Dragon.flyup();
+                } else if (key == KeyEvent.VK_DOWN) {
+                    if (Positiony + Dragon.GRAVITY <= key1) {
+                        Positiony += Dragon.GRAVITY;
+                    }
+                    Dragon.flyDown();
+                }
+
+                dragonLabel.setBounds(dragon.getxPosition(), Positiony, 130, 100);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
+    }
     // เคลื่อนหินไปทางซ้าย
     private void moveRocks() {
         for (JLabel rockLabel : rockLabels) {
             int x = rockLabel.getX();
-            if (x <= -20) { //หลุดขอบจอไป -20 หายไปเลย สมมติหินมีขนาด x = 40 เลยจอไปครึ่งนึงหายไปเลย
+            if (x <= -200) { //หลุดขอบจอไป -20 หายไปเลย สมมติหินมีขนาด x = 40 เลยจอไปครึ่งนึงหายไปเลย
                 // เซตตำแหน่ง
                 rockLabel.setLocation(frame.getWidth(), rockLabel.getY());
             } else {
@@ -77,5 +116,12 @@ public class Scene {
                 rockLabel.setLocation(x - 8, rockLabel.getY());
             }
         }
+    
+    	
     }
-}
+    }
+    	
+        
+
+
+	
