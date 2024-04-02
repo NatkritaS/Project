@@ -96,10 +96,14 @@ public class Character_page  {
 
         dragon_choose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                     	frame.getContentPane().removeAll();
+                     	frame.repaint();
+                         
+                         
                 Scene s = new Scene();
                 
-                frame.dispose(); // ปิดหน้าปัจจุบัน
+                
+                //frame.dispose(); // ปิดหน้าปัจจุบัน
             }
         });
         
