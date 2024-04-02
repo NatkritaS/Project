@@ -1,4 +1,5 @@
 package Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -32,30 +33,49 @@ public class Scene {
 
         Dragon d = new Dragon();
         dragonLabel = new JLabel(d.getDragonImage());
-        dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 130 , 100);
+        dragonLabel.setBounds(d.getxPosition(), d.getyPosition(), 130, 100);
         panel.add(dragonLabel);
 
         rockLabels = new ArrayList<>();
         random = new Random();
-        for (int i = 0; i < 5; i++) {
-            int x = random.nextInt(350); // สุ่มตำแหน่ง x ของหิน
-            int y = random.nextInt(450); // สุ่มตำแหน่ง y ของหิน
+        for (int i = 0; i < 4; i++) {
+            int x = random.nextInt(600); // random x ให้อยู่ในเฟรม
+            int y = random.nextInt(500); // random x ให้อยู่ในเฟรม
+
             JLabel rockLabel = new JLabel(new ImageIcon("src/images/landRock.png"));
-            rockLabel.setBounds(x, y, 100, 150); // กำหนดขนาดและตำแหน่งของหิน
-            rockLabels.add(rockLabel); // เพิ่ม JLabel ของหินลงใน ArrayList
-            panel.add(rockLabel); // เพิ่ม JLabel ของหินลงใน JPanel
+            rockLabel.setBounds(x, 0, 100, 200);
+            rockLabels.add(rockLabel);
+            panel.add(rockLabel);
         }
 
         frame.add(panel);
         frame.setVisible(true);
-    }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Scene();
+        // AI generate 
+        Thread moveRocksThread = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(50); // ปรับ speed ของการเคลื่อนที่
+                    moveRocks();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
+        moveRocksThread.start();
+    }
+
+    // เคลื่อนหินไปทางซ้าย
+    private void moveRocks() {
+        for (JLabel rockLabel : rockLabels) {
+            int x = rockLabel.getX();
+            if (x <= -20) { //หลุดขอบจอไป -20 หายไปเลย สมมติหินมีขนาด x = 40 เลยจอไปครึ่งนึงหายไปเลย
+                // เซตตำแหน่
+                rockLabel.setLocation(frame.getWidth(), rockLabel.getY());
+            } else {
+                // เคลื่อนหินไปทางซ้าย 
+                rockLabel.setLocation(x - 5, rockLabel.getY());
+            }
+        }
     }
 }
