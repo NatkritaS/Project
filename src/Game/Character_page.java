@@ -98,7 +98,14 @@ public class Character_page  {
             public void actionPerformed(ActionEvent e) {
                      	frame.getContentPane().removeAll();
                      	frame.repaint();
-                         Scene s = new Scene(frame);
+                         SceneDragon s = new SceneDragon(frame);
+            }
+        });
+        chubbybird_choose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                     	frame.getContentPane().removeAll();
+                     	frame.repaint();
+                         SceneChubby s = new SceneChubby(frame);
             }
         });
 	}
