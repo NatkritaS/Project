@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -23,6 +24,9 @@ public class Lobby {
         frame = f;
         frame.setTitle("AnimalAdventure");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("src/images/IconGame.png"); 
+        Image image = icon.getImage();
+        frame.setIconImage(image);
         frame.setResizable(false);
         frame.setSize(700, 800);
 
