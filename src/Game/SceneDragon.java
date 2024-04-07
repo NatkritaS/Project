@@ -1,3 +1,5 @@
+package Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -31,7 +33,8 @@ public class SceneDragon {
             }
         };
         panel.setLayout(null);
-
+        
+        
         background = new ImageIcon("src/images/background_sunny.png");
 
         rockLabels = new ArrayList<>();
@@ -135,6 +138,7 @@ public class SceneDragon {
             Rectangle rockBounds = rockLabel.getBounds();
             if (dragonBounds.intersects(rockBounds)) { //ตรวจสอบว่ามังกรชนหินไหม .intersects() เอาไว้ทดสอบว่ามันชนกันไหม
                 gameOver();
+                return;
             }
         }
     }
