@@ -135,7 +135,6 @@ public class SceneDragon {
             Rectangle rockBounds = rockLabel.getBounds();
             if (dragonBounds.intersects(rockBounds)) { //ตรวจสอบว่ามังกรชนหินไหม .intersects() เอาไว้ทดสอบว่ามันชนกันไหม
                 gameOver();
-                return;
             }
         }
     }
