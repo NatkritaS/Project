@@ -25,7 +25,7 @@ public class Character_page  {
 		frame.setSize(700, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		frame.setVisible(true); // เพิ่มบรรทัดนี้เพื่อแสดง JFrame
+		frame.setVisible(true); 
 
 		panel = new JPanel();
         panel.setLayout(null);
