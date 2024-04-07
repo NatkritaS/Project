@@ -14,6 +14,9 @@ public class SceneDragon {
     private JPanel panel;
     private Random random;
     private Dragon dragon;
+    private Character_page character;
+	private JButton button_back;
+	
     protected static int Positiony = 0;
 
     public SceneDragon(JFrame J) {
@@ -101,7 +104,8 @@ public class SceneDragon {
                 panel.repaint();
             }
         });
-        }
+    }
+        
     
     // เคลื่อนหินไปทางซ้าย
     private void moveRocks() {
@@ -117,8 +121,30 @@ public class SceneDragon {
         }
     
     	
+    
+    ImageIcon back = new ImageIcon("src\\images\\back_button.png");
+    button_back = new JButton();
+    button_back.setIcon(back);
+    button_back.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
+    button_back.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
+    button_back.setFocusPainted(false);
+    button_back.setOpaque(false);
+    button_back.setBounds(590 ,5 ,95, 20);
+    panel.add(button_back);
+
+    
+    button_back.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+        	frame.getContentPane().removeAll();
+        	frame.repaint();
+            character = new Character_page(frame);
+        }
+    });
     }
-    }
+}
+
+    
+    
     	
         
 
