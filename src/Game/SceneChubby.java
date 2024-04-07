@@ -13,6 +13,8 @@ public class SceneChubby {
     private JFrame frame;
     private JPanel panel;
     private Random random;
+    private Character_page character;
+    private JButton button_back;
     private Chubby chubby;
     protected static int Positiony = 0;
 
@@ -101,7 +103,8 @@ public class SceneChubby {
                 panel.repaint();
             }
         });
-        }
+    }
+        
     
     // เคลื่อนหินไปทางซ้าย
     private void moveChain() {
@@ -117,5 +120,25 @@ public class SceneChubby {
         }
     
     	
+    
+
+    ImageIcon back = new ImageIcon("src\\images\\back_button.png");
+    button_back = new JButton();
+    button_back.setIcon(back);
+    button_back.setBorderPainted(false); // ทำให้กรอบตรงปุ่มหายไป
+    button_back.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
+    button_back.setFocusPainted(false);
+    button_back.setOpaque(false);
+    button_back.setBounds(590 ,5 ,95, 20);
+    panel.add(button_back);
+
+    
+    button_back.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+        	frame.getContentPane().removeAll();
+        	frame.repaint();
+            character = new Character_page(frame);
     }
+    });
     }
+}
