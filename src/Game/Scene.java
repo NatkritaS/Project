@@ -53,7 +53,7 @@ public class Scene {
             panel.add(rockLabelLand);
             panel.add(rockLabelTop);
         }
-
+        }
         
         dragon = new Dragon();
         dragonLabel = new JLabel(dragon.getDragonImage());
@@ -102,7 +102,7 @@ public class Scene {
             }
         });
         }
-    }
+    
     // เคลื่อนหินไปทางซ้าย
     private void moveRocks() {
         for (JLabel rockLabel : rockLabels) {
