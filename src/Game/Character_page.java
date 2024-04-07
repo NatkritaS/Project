@@ -17,8 +17,8 @@ public class Character_page  {
 	private JButton cutieghost_choose;
 	private JButton button_back;
 	private  Lobby lobby;
-
-	
+	{
+	}
 	public Character_page(JFrame j) {
 		frame = j;
 		
@@ -101,6 +101,5 @@ public class Character_page  {
                          Scene s = new Scene(frame);
             }
         });
-        
 	}
-}	
+}

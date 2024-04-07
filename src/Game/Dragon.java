@@ -24,11 +24,11 @@ public class Dragon {
         yPosition = y;
     }
 
-    public static int getxPosition() {
+    public int getxPosition() {
         return xPosition;
     }
 
-    public static int getyPosition() {
+    public int getyPosition() {
         return yPosition;
     }
 
