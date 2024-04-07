@@ -16,7 +16,7 @@ public class SceneChubby {
     private Character_page character;
     private JButton button_back;
     private Chubby chubby;
-    protected static int Positiony = 0;
+    protected static int Positiony = 350;
 
     public SceneChubby(JFrame J) {
         frame = J;

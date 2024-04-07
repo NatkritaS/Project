@@ -16,7 +16,7 @@ public class SceneDragon {
     private Dragon dragon;
     private Character_page character;
     private JButton button_back;
-    protected static int Positiony = 0;
+    protected static int Positiony = 350;
 
     public SceneDragon(JFrame J) {
         frame = J;
