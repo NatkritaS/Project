@@ -92,5 +92,14 @@ public class Lobby {
                 
             }
         });
+        button_exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            	System.exit(0);
+            	
+        
+    }
+});
     }
 }
+    
