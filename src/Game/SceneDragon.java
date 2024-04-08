@@ -16,6 +16,9 @@ public class SceneDragon {
     private Dragon dragon;
     private Character_page character;
     private JButton button_back;
+    private JLabel score;
+    private Scoreboard sb;
+    
     protected static int Positiony = 350;
     protected static int Positionx = 400;
 
@@ -24,6 +27,7 @@ public class SceneDragon {
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+   
 
         panel = new JPanel() {
             protected void paintComponent(Graphics g) {
@@ -34,6 +38,16 @@ public class SceneDragon {
             }
         };
         panel.setLayout(null);
+        score = new JLabel("Score:" );
+        Font font = new Font("Arial", Font.BOLD, 18);
+        score.setFont(font);
+        score.setBounds(580, 10, 100, 20); 
+        panel.add(score);
+        frame.add(panel);
+
+        frame.setVisible(true);
+        sb = new Scoreboard(); 
+        panel.requestFocus();
         
         
         background = new ImageIcon("src/images/background_sunny.png");
@@ -101,7 +115,7 @@ public class SceneDragon {
               
                 
 
-                dragonLabel.setBounds(dragon.getxPosition(), Positiony, dragon.getDragonWidth(), dragon.getDragonHeight());
+                dragonLabel.setBounds(dragon.getxPosition(), Positiony, 130, dragon.getDragonHeight());
                 panel.revalidate();
                 panel.repaint();
             }
@@ -114,7 +128,7 @@ public class SceneDragon {
         button_back.setContentAreaFilled(false);
         button_back.setFocusPainted(false);
         button_back.setOpaque(false);
-        button_back.setBounds(590, 5, 95, 20);
+        button_back.setBounds(0, 5, 95, 20);
         panel.add(button_back);
 
         button_back.addActionListener(new ActionListener() {
@@ -127,6 +141,7 @@ public class SceneDragon {
     }
 
     private void moveRocks() {
+    	boolean dragonIntersectsRock = false;
         for (JLabel rockLabel : rockLabels) {
             int x = rockLabel.getX();
             if (x <= -200) { //หลุดขอบจอไป -20 หายไปเลย สมมติหินมีขนาด x = 40 เลยจอไปครึ่งนึงหายไปเลย
@@ -141,15 +156,25 @@ public class SceneDragon {
         Rectangle dragonBounds = dragonLabel.getBounds();
         for (JLabel rockLabel : rockLabels) {
             Rectangle rockBounds = rockLabel.getBounds();
-            if (dragonBounds.intersects(rockBounds)) { //ตรวจสอบว่ามังกรชนหินไหม .intersects() เอาไว้ทดสอบว่ามันชนกันไหม
-                gameOver();
-                return;
+            if (dragonBounds.intersects(rockBounds)) {
+                dragonIntersectsRock = true; 
+                break; // เบรคเมื่อมังกรชนกับหิน
             }
+        }
+        
+        
+        if (!dragonIntersectsRock) {
+            score.setText("Score: " + sb.CountScore());
+        }
+        
+        
+        if (dragonIntersectsRock) {
+            gameOver();
         }
     }
 
-    private void gameOver() {
-        JOptionPane.showMessageDialog(frame, "Game Over");
-        System.exit(0);
-    }
+	private void gameOver() {
+		   JOptionPane.showMessageDialog(frame, "Game Over");
+	        System.exit(0);
+	}
 }

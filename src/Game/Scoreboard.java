@@ -6,16 +6,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Scoreboard {
-//	public static int COUNT = 0;
+	public static int COUNT = 0;
 	public static int SCORE = 0;
 	public static int MAX_SCORE = 0;
 	private JFrame frame ;
 	private JLabel screen;
+	private JLabel scoreboard;
 	
 	
 	
 	public Scoreboard() {
-		//COUNT = 0;
+		this.scoreboard = scoreboard;
+		COUNT = 0;
 		SCORE = 0;
 		MAX_SCORE = 0;
 		}
@@ -35,14 +37,14 @@ public class Scoreboard {
     screen.setIcon(BG_Scoreboard);
     screen.setBounds(0, 0, 700, 800);
     panel.add(screen);
-    
+      
     frame.add(panel);
     frame.setVisible(true);
     
 	}
-	public void setScore(int score) {
-		SCORE = score ;
-	}
+	//public void setScore(int score) {
+	//	SCORE = score ;
+	//}
 	
     public int getScore() {
     	return SCORE;
@@ -62,6 +64,13 @@ public class Scoreboard {
 	public int getMax_Score() {
 		return MAX_SCORE;
 	}
+	public void printScore() {
+		
+		SCORE+=COUNT;
+		scoreboard.setText("Score: " + SCORE);
+		
+	}
+	
 
 
 }
