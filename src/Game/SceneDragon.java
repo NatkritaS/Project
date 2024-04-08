@@ -17,6 +17,7 @@ public class SceneDragon {
     private Character_page character;
     private JButton button_back;
     protected static int Positiony = 350;
+    protected static int Positionx = 400;
 
     public SceneDragon(JFrame J) {
         frame = J;
@@ -66,11 +67,11 @@ public class SceneDragon {
         frame.setVisible(true);
 
         panel.requestFocus();
-
+        // AI แก้ไข
         Thread moveRocksThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(20);
                     moveRocks();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -83,6 +84,7 @@ public class SceneDragon {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
                 int key1 = panel.getHeight() - dragon.getDragonHeight();
+                
 
                 if (key == KeyEvent.VK_UP) {
                     if (Positiony - Dragon.GRAVITY >= 0) {
@@ -95,8 +97,11 @@ public class SceneDragon {
                     }
                     Dragon.flyDown();
                 }
+                	
+              
+                
 
-                dragonLabel.setBounds(dragon.getxPosition(), Positiony, 130, 100);
+                dragonLabel.setBounds(dragon.getxPosition(), Positiony, dragon.getDragonWidth(), dragon.getDragonHeight());
                 panel.revalidate();
                 panel.repaint();
             }

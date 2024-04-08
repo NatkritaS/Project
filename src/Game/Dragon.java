@@ -13,7 +13,7 @@ public class Dragon {
     private int width = 700;
     private int height = 800;
     private ImageIcon dragonImage;
-    public static int GRAVITY = 10;
+    public static int GRAVITY = 15;
 
     public Dragon() {
         this.xPosition = 100;
