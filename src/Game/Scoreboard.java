@@ -23,11 +23,12 @@ public class Scoreboard {
 		}
 	
 	{
+	
 	frame = new JFrame();
 	frame.setSize(700, 800);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setResizable(false);
-	frame.setVisible(true); 
+	frame.setVisible(false); 
 
 	JPanel panel = new JPanel();
     panel.setLayout(null); 
@@ -39,7 +40,7 @@ public class Scoreboard {
     panel.add(screen);
       
     frame.add(panel);
-    frame.setVisible(true);
+    frame.setVisible(false);
     
 	}
 	//public void setScore(int score) {
@@ -54,7 +55,7 @@ public class Scoreboard {
     	MAX_SCORE =0;
     }
     public int CountScore() {
-    	return SCORE++;
+    	return COUNT++;
     }
     public void Max_Score() {
 		if (SCORE >= MAX_SCORE) {
@@ -65,7 +66,6 @@ public class Scoreboard {
 		return MAX_SCORE;
 	}
 	public void printScore() {
-		
 		SCORE+=COUNT;
 		scoreboard.setText("Score: " + SCORE);
 		
