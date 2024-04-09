@@ -55,7 +55,7 @@ public class Scoreboard {
     	MAX_SCORE =0;
     }
     public int CountScore() {
-    	return COUNT++;
+    	return SCORE++;
     }
     public void Max_Score() {
 		if (SCORE >= MAX_SCORE) {
@@ -65,15 +65,13 @@ public class Scoreboard {
 	public int getMax_Score() {
 		return MAX_SCORE;
 	}
-	public void printScore() {
-		SCORE+=COUNT;
-		scoreboard.setText("Score: " + SCORE);
+	
 		
 	}
 	
 
 
-}
+
 
 
 
