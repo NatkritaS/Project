@@ -38,6 +38,12 @@ public class SceneChubby {
  
         chainLabels = new ArrayList<>();
         random = new Random();
+        Random random = new Random();
+        int a, b;
+        do {
+            a = random.nextInt(401) - 200;
+            b = random.nextInt(301) + a + 500;
+        } while (Math.abs(a - b) < 500);
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
                 int x = random.nextInt(600);

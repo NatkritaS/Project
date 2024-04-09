@@ -54,6 +54,12 @@ public class SceneDragon {
  
         rockLabels = new ArrayList<>();
         random = new Random();
+        Random random = new Random();
+        int a, b;
+        do {
+            a = random.nextInt(401) - 200;
+            b = random.nextInt(301) + a + 500;
+        } while (Math.abs(a - b) < 500);
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
                 int x = random.nextInt(600);
@@ -61,10 +67,9 @@ public class SceneDragon {
  
                 JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
                 JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
- 
-                rockLabelLand.setBounds(700, 500, 280, 305);
-                rockLabelTop.setBounds(700, 0, 280, 285);
- 
+                rockLabelTop.setBounds(700, a, 280, 285);
+                rockLabelLand.setBounds(700, b, 280, 305);
+
                 rockLabels.add(rockLabelLand);
                 rockLabels.add(rockLabelTop);
  
