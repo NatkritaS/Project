@@ -1,4 +1,4 @@
-//package Game;
+package Game;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
