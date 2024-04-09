@@ -1,11 +1,11 @@
 package Game;
-
+ 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
-
+ 
 public class SceneDragon {
     private ImageIcon background;
     private JLabel dragonLabel;
@@ -21,14 +21,14 @@ public class SceneDragon {
     
     protected static int Positiony = 350;
     protected static int Positionx = 400;
-
+ 
     public SceneDragon(JFrame J) {
         frame = J;
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
    
-
+ 
         panel = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -41,45 +41,45 @@ public class SceneDragon {
         score = new JLabel("Score:" );
         Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
         score.setFont(font);
-        score.setBounds(550, 10, 100, 20); 
+        score.setBounds(550, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
-
+ 
         frame.setVisible(true);
-        sb = new Scoreboard(); 
+        sb = new Scoreboard();
         panel.requestFocus();
         
         
         background = new ImageIcon("src/images/background_sunny.png");
-
+ 
         rockLabels = new ArrayList<>();
         random = new Random();
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
                 int x = random.nextInt(600);
                 int y = random.nextInt(500);
-
+ 
                 JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
                 JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-
+ 
                 rockLabelLand.setBounds(700, 500, 280, 305);
                 rockLabelTop.setBounds(700, 0, 280, 285);
-
+ 
                 rockLabels.add(rockLabelLand);
                 rockLabels.add(rockLabelTop);
-
+ 
                 panel.add(rockLabelLand);
                 panel.add(rockLabelTop);
             }
         }
-
+ 
         dragon = new Dragon();
         dragonLabel = new JLabel(dragon.getDragonImage());
         dragonLabel.setBounds(dragon.getxPosition(), dragon.getyPosition(), 130, 100);
         panel.add(dragonLabel);
         frame.add(panel);
         frame.setVisible(true);
-
+ 
         panel.requestFocus();
         // AI แก้ไข
         Thread moveRocksThread = new Thread(() -> {
@@ -93,13 +93,13 @@ public class SceneDragon {
             }
         });
         moveRocksThread.start();
-
+ 
         panel.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
                 int key1 = panel.getHeight() - dragon.getDragonHeight();
                 
-
+ 
                 if (key == KeyEvent.VK_UP) {
                     if (Positiony - Dragon.GRAVITY >= 0) {
                         Positiony -= Dragon.GRAVITY;
@@ -114,13 +114,13 @@ public class SceneDragon {
                 	
               
                 
-
+ 
                 dragonLabel.setBounds(dragon.getxPosition(), Positiony, 130, dragon.getDragonHeight());
                 panel.revalidate();
                 panel.repaint();
             }
         });
-
+ 
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
@@ -130,7 +130,7 @@ public class SceneDragon {
         button_back.setOpaque(false);
         button_back.setBounds(0, 5, 95, 20);
         panel.add(button_back);
-
+ 
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
@@ -139,10 +139,10 @@ public class SceneDragon {
             }
         });
     }
-
+ 
     private void moveRocks() {
-        boolean dragonPassedRock = false; 
-
+        boolean dragonPassedRock = false;
+ 
         for (JLabel rockLabel : rockLabels) {
             int x = rockLabel.getX();
             if (x <= -200) {
@@ -156,26 +156,27 @@ public class SceneDragon {
                 dragonPassedRock = true;
             }
         }
-
+ 
         if (dragonPassedRock) {
             sb.CountScore();
             score.setText("Score: " + sb.getScore());
         }
-
+ 
         // มังกรชนหินมั้ย
         Rectangle dragonBounds = dragonLabel.getBounds();
         for (JLabel rockLabel : rockLabels) {
             Rectangle rockBounds = rockLabel.getBounds();
             if (dragonBounds.intersects(rockBounds)) {
                 gameOver();
-                return; 
+                return;
             }
         }
     }
-
-
+ 
+ 
 	private void gameOver() {
 		   JOptionPane.showMessageDialog(frame, "Game Over");
 	        System.exit(0);
 	}
 }
+ 
