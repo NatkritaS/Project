@@ -49,8 +49,11 @@ public class SceneDragon {
         sb = new Scoreboard(); 
         panel.requestFocus();
     	Random random = new Random();
-        int a = random.nextInt(401) - 200;
-        int b = random.nextInt(301) + 400;
+    	int a, b;
+    	do {
+            a = random.nextInt(401) - 200;
+            b = random.nextInt(301) + a + 500;
+        } while (Math.abs(a - b) < 500);
         
         background = new ImageIcon("src/images/background_sunny.png");
 
