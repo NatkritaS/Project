@@ -157,9 +157,10 @@ public class SceneDragon {
             }
             
             // มังกรผ่านหินมั้ย
-            if (x + rockLabel.getWidth() < dragonLabel.getX() && !dragonPassedRock) {
+            if (x + rockLabel.getWidth() == dragonLabel.getX()) {
                 dragonPassedRock = true;
             }
+
         }
  
         if (dragonPassedRock) {
