@@ -1,4 +1,4 @@
-//package Game;
+package Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,8 +62,8 @@ public class SceneDragon {
                 JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
                 JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
 
-                rockLabelLand.setBounds(0, 500, 280, 305);
-                rockLabelTop.setBounds(0, 0, 280, 285);
+                rockLabelLand.setBounds(700, 500, 280, 305);
+                rockLabelTop.setBounds(700, 0, 280, 285);
 
                 rockLabels.add(rockLabelLand);
                 rockLabels.add(rockLabelTop);
