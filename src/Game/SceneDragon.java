@@ -39,7 +39,7 @@ public class SceneDragon {
         };
         panel.setLayout(null);
         score = new JLabel("Score:" );
-        Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
+        Font font = new Font("Arial", Font.BOLD, 18);
         score.setFont(font);
         score.setBounds(580, 10, 100, 20); 
         panel.add(score);
