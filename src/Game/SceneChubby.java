@@ -46,9 +46,8 @@ public class SceneChubby {
                 JLabel chainLabelTop = new JLabel(new ImageIcon("src/images/topChain.png"));
                 JLabel chainLabelLand = new JLabel(new ImageIcon("src/images/landChain.png"));
 
-                chainLabelLand.setBounds(0, 400, 400, 600);
-                chainLabelTop.setBounds(0, -250, 130, 700);
-
+                chainLabelLand.setBounds(500, -90, 300, 1300); //x,y,width,height
+                chainLabelTop.setBounds(50, -250, 500, 900); 
                 chainLabels.add(chainLabelLand);
                 chainLabels.add(chainLabelTop);
 
