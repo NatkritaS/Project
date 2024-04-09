@@ -48,7 +48,9 @@ public class SceneDragon {
         frame.setVisible(true);
         sb = new Scoreboard(); 
         panel.requestFocus();
-        
+    	Random random = new Random();
+        int a = random.nextInt(401) - 200;
+        int b = random.nextInt(301) + 400;
         
         background = new ImageIcon("src/images/background_sunny.png");
 
@@ -58,12 +60,12 @@ public class SceneDragon {
             for (int j = 0; j < 3; j++) {
                 int x = random.nextInt(600);
                 int y = random.nextInt(500);
-
+                
                 JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
                 JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-
-                rockLabelLand.setBounds(700, 500, 280, 305);
-                rockLabelTop.setBounds(700, 0, 280, 285);
+                
+                rockLabelTop.setBounds(700, a, 280, 285);
+                rockLabelLand.setBounds(700, b, 280, 305);
 
                 rockLabels.add(rockLabelLand);
                 rockLabels.add(rockLabelTop);
