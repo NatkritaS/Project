@@ -14,6 +14,7 @@ public class Lobby {
     private JButton button_score;
     private JButton button_exit;
     private  Character_page characterPage;
+	protected Howtoplay Howtoplay;
 
     public Lobby(JFrame f) {
         ImageIcon background = new ImageIcon("src\\images\\background_lobby.png");
@@ -100,6 +101,15 @@ public class Lobby {
         
     }
 });
+        button_howto.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	frame.getContentPane().removeAll();
+            	frame.repaint();
+                Howtoplay= new Howtoplay(frame);
+                
+                
+            }
+        });
     }
 }
     
