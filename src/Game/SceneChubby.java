@@ -49,10 +49,10 @@ public class SceneChubby {
                 int x = random.nextInt(600);
                 int y = random.nextInt(500);
  
-                JLabel chainLabelTop = new JLabel(new ImageIcon("src/images/topChain.png"));
-                JLabel chainLabelLand = new JLabel(new ImageIcon("src/images/landChain.png"));
+                JLabel chainLabelTop = new JLabel(new ImageIcon("src/images/bubbleTop.png"));
+                JLabel chainLabelLand = new JLabel(new ImageIcon("src/images/bubbleLand.png"));
                 
-                chainLabelTop.setBounds(700, -400, 150, 650);
+                chainLabelTop.setBounds(700, -170, 170, 450);
                 chainLabelLand.setBounds(700, 450, 150, 650); //x,y,width,height
                 
                 chainLabels.add(chainLabelLand);

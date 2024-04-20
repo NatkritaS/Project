@@ -54,12 +54,6 @@ public class SceneDragon {
  
         rockLabels = new ArrayList<>();
         random = new Random();
-        Random random = new Random();
-        int a, b;
-        do {
-            a = random.nextInt(401) - 200;
-            b = random.nextInt(301) + a + 500;
-        } while (Math.abs(a - b) < 500);
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
                 int x = random.nextInt(600);
@@ -67,9 +61,11 @@ public class SceneDragon {
  
                 JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
                 JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-                rockLabelTop.setBounds(700, a, 280, 285);
-                rockLabelLand.setBounds(700, b, 280, 305);
-
+ 
+                
+                rockLabelLand.setBounds(700, 500, 280, 305);
+                rockLabelTop.setBounds(700, 0, 280, 285);
+ 
                 rockLabels.add(rockLabelLand);
                 rockLabels.add(rockLabelTop);
  
@@ -160,12 +156,12 @@ public class SceneDragon {
             if (x + rockLabel.getWidth() == dragonLabel.getX()) {
                 dragonPassedRock = true;
             }
-
         }
  
         if (dragonPassedRock) {
-            sb.CountScore();
-            score.setText("Score: " + sb.getScore());
+        	int addedScore = sb.CountScore();
+        	sb.Max_Score();
+            score.setText("Score: " + addedScore);
         }
  
         // มังกรชนหินมั้ย
@@ -177,8 +173,8 @@ public class SceneDragon {
                 return;
             }
         }
-    }
- 
+   }
+        
  
 	private void gameOver() {
 		   JOptionPane.showMessageDialog(frame, "Game Over");
