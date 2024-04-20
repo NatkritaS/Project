@@ -57,25 +57,20 @@ public class SceneDragon {
         Random random = new Random();
         int a, b;
         do {
-            a = random.nextInt(401) - 200;
+            a = random.nextInt(401) - 200; 
             b = random.nextInt(301) + a + 500;
         } while (Math.abs(a - b) < 500);
         for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 3; j++) {
-                int x = random.nextInt(600);
-                int y = random.nextInt(500);
- 
-                JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
-                JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-                rockLabelTop.setBounds(700, a, 280, 285);
-                rockLabelLand.setBounds(700, b, 280, 305);
+        	JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
+            JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
+            rockLabelTop.setBounds(700, a, 280, 285);
+            rockLabelLand.setBounds(700, b, 280, 305);
 
-                rockLabels.add(rockLabelLand);
-                rockLabels.add(rockLabelTop);
- 
-                panel.add(rockLabelLand);
-                panel.add(rockLabelTop);
-            }
+            rockLabels.add(rockLabelLand);
+            rockLabels.add(rockLabelTop);
+
+            panel.add(rockLabelLand);
+            panel.add(rockLabelTop);
         }
  
         dragon = new Dragon();
@@ -147,7 +142,6 @@ public class SceneDragon {
  
     private void moveRocks() {
         boolean dragonPassedRock = false;
- 
         for (JLabel rockLabel : rockLabels) {
             int x = rockLabel.getX();
             if (x <= -200) {
@@ -156,16 +150,35 @@ public class SceneDragon {
                 rockLabel.setLocation(x - 8, rockLabel.getY());
             }
             
-            // มังกรผ่านหินมั้ย
             if (x + rockLabel.getWidth() == dragonLabel.getX()) {
                 dragonPassedRock = true;
             }
+        }
+        if (dragonPassedRock) {
+            // สุ่มตำแหน่งใหม่สำหรับหินทุกตัว
+            for (JLabel rockLabel : rockLabels) {
+                int currentY = rockLabel.getY();
+                int newRockY;
+                boolean overlapping;
+                do {
+                    newRockY = random.nextInt(panel.getHeight() - rockLabel.getHeight() - 50) + 25;
+                    overlapping = false;
+                    for (JLabel otherRockLabel : rockLabels) {
+                        if (otherRockLabel != rockLabel && Math.abs(otherRockLabel.getY() - newRockY) == 500) {
+                            overlapping = true;
+                            break;
+                        }
+                    }
+                } while (overlapping); 
 
+                rockLabel.setLocation(rockLabel.getX(), newRockY);
+            }
         }
  
         if (dragonPassedRock) {
-            sb.CountScore();
-            score.setText("Score: " + sb.getScore());
+        	int addedScore = sb.CountScore();
+        	sb.Max_Score();
+            score.setText("Score: " + addedScore);
         }
  
         // มังกรชนหินมั้ย
@@ -177,8 +190,8 @@ public class SceneDragon {
                 return;
             }
         }
-    }
- 
+   }
+        
  
 	private void gameOver() {
 		   JOptionPane.showMessageDialog(frame, "Game Over");
