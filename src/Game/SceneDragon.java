@@ -41,7 +41,7 @@ public class SceneDragon {
         score = new JLabel("Score:" );
         Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
         score.setFont(font);
-        score.setBounds(550, 10, 100, 20);
+        score.setBounds(600, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
  
