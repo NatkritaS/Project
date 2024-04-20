@@ -56,22 +56,30 @@ public class SceneDragon {
         random = new Random();
         Random random = new Random();
         int a, b;
+        int posOb = 300+random.nextInt(100);
+        a = random.nextInt(panel.getWidth() - 280-285); 
         do {
-            a = random.nextInt(401) - 200; 
-            b = random.nextInt(301) + a + 500;
+        	b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
-        for (int i = 0; i < 2; i++) {
-        	JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
-            JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-            rockLabelTop.setBounds(700, a, 280, 285);
-            rockLabelLand.setBounds(700, b, 280, 305);
 
-            rockLabels.add(rockLabelLand);
+        int topRockCount = random.nextInt(2) + 2;
+        for (int i = 0; i < topRockCount; i++) {
+            JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
+            rockLabelTop.setBounds(700 + i * 300, a, 280, 285); // เคลื่อนที่ไปทางขวา
             rockLabels.add(rockLabelTop);
-
-            panel.add(rockLabelLand);
             panel.add(rockLabelTop);
         }
+
+        
+        int landRockCount = random.nextInt(2) + 2;
+        for (int i = 0; i < landRockCount; i++) {
+            JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
+            rockLabelLand.setBounds(700 + i * 300, b, 280, 305); // เคลื่อนที่ไปทางขวา
+            rockLabels.add(rockLabelLand);
+            panel.add(rockLabelLand);
+        }
+
+        
  
         dragon = new Dragon();
         dragonLabel = new JLabel(dragon.getDragonImage());

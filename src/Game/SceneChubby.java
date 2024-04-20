@@ -52,8 +52,9 @@ public class SceneChubby {
                 JLabel chainLabelTop = new JLabel(new ImageIcon("src/images/bubbleTop.png"));
                 JLabel chainLabelLand = new JLabel(new ImageIcon("src/images/bubbleLand.png"));
                 
-                chainLabelTop.setBounds(700, -170, 170, 450);
-                chainLabelLand.setBounds(700, 450, 150, 650); //x,y,width,height
+                chainLabelTop.setBounds(700, -170, 79, 450);
+                chainLabelLand.setBounds(700, 400, 79, 650); //x,y,width,height
+                
                 
                 chainLabels.add(chainLabelLand);
                 chainLabels.add(chainLabelTop);
@@ -127,6 +128,7 @@ public class SceneChubby {
     }
  
     private void moveChain() {
+    	boolean Passed = false;
         for (JLabel chainLabel : chainLabels) {
             int x = chainLabel.getX();
             if (x <= -200) { //หลุดขอบจอไป -20 หายไปเลย สมมติหินมีขนาด x = 40 เลยจอไปครึ่งนึงหายไปเลย
