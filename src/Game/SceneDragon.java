@@ -69,7 +69,7 @@ public class SceneDragon {
         for (int i = 0; i < topWoodCount; i++) {
             JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
             int ranposTop = random.nextInt(401);
-            WoodLabelTop.setBounds(700 + i * 300, TopWoodY, 210, ranposTop); 
+            WoodLabelTop.setBounds(700 + i * 350, TopWoodY, 100, ranposTop); 
             WoodLabels.add(WoodLabelTop);
             panel.add(WoodLabelTop);
         }
@@ -77,8 +77,8 @@ public class SceneDragon {
         int landWoodCount = random.nextInt(100);
         for (int i = 0; i < landWoodCount; i++) {
             JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
-            int ranposLand = 500+random.nextInt(201);
-            WoodLabelLand.setBounds(700 + i * 300, LandWoodY, 210, ranposLand); 
+            int ranposLand = 500+random.nextInt(101);
+            WoodLabelLand.setBounds(700 + i * 350, LandWoodY, 100, ranposLand); 
             WoodLabels.add(WoodLabelLand);
             panel.add(WoodLabelLand);
         }
@@ -154,27 +154,30 @@ public class SceneDragon {
  
     private void moveWood() {
         boolean dragonPassedWood = false;
+        int lastWoodX = 0; // เก็บตำแหน่ง x ของไม้ล่าสุดที่ผ่านมังกร
+
         for (JLabel WoodLabel : WoodLabels) {
             int x = WoodLabel.getX();
             if (x <= -200) {
-                WoodLabel.setLocation(frame.getWidth(), WoodLabel.getY());
+                WoodLabel.setVisible(false); // ซ่อนไม้เมื่อออกนอกระดับหน้าจอ
             } else {
                 WoodLabel.setLocation(x - 8, WoodLabel.getY());
             }
-            
-           // if (x + WoodLabel.getWidth() == dragonLabel.getX()) {
-             //   dragonPassedWood = true;
+
+            // ตรวจสอบความต่างห่างระหว่างไม้และไม้ล่าสุดที่ผ่านมังกร
+            if (x > lastWoodX && x + WoodLabel.getWidth() <= dragonLabel.getX() && !dragonPassedWood) {
+                dragonPassedWood = true;
+                lastWoodX = x; // อัพเดทตำแหน่ง x ของไม้ล่าสุดที่ผ่านมังกร
             }
-        
-      
- 
+        }
+
         if (dragonPassedWood) {
-        	int addedScore = sb.CountScore();
-        	sb.Max_Score();
+            int addedScore = sb.CountScore();
+            sb.Max_Score();
             score.setText("Score: " + addedScore);
         }
- 
-        // มังกรชนหินมั้ย
+
+        // ตรวจสอบการชนกับหิน
         Rectangle dragonBounds = dragonLabel.getBounds();
         for (JLabel WoodLabel : WoodLabels) {
             Rectangle rockBounds = WoodLabel.getBounds();
@@ -183,7 +186,8 @@ public class SceneDragon {
                 return;
             }
         }
-   }
+    }
+
         
  
 	private void gameOver() {
