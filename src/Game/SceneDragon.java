@@ -61,22 +61,25 @@ public class SceneDragon {
         	b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
  
+        int topRockY = 0; // Start from the top edge of the panel
+        int landRockY = panel.getHeight() - 305; // Start from the bottom edge of the panel
+
         int topRockCount = random.nextInt(2) + 2;
         for (int i = 0; i < topRockCount; i++) {
             JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
-            rockLabelTop.setBounds(700 + i * 300, a, 280, 285); // เคลื่อนที่ไปทางขวา
+            rockLabelTop.setBounds(700 + i * 500, topRockY, 280, 285); // Move towards the right
             rockLabels.add(rockLabelTop);
             panel.add(rockLabelTop);
         }
- 
-        
+
         int landRockCount = random.nextInt(2) + 2;
         for (int i = 0; i < landRockCount; i++) {
             JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-            rockLabelLand.setBounds(700 + i * 300, b, 280, 305); // เคลื่อนที่ไปทางขวา
+            rockLabelLand.setBounds(700 + i * 500, landRockY, 280, 305); // Move towards the right
             rockLabels.add(rockLabelLand);
             panel.add(rockLabelLand);
         }
+
  
         
  
@@ -92,7 +95,7 @@ public class SceneDragon {
         Thread moveRocksThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(100);
                     moveRocks();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
