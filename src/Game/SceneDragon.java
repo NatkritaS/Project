@@ -56,11 +56,11 @@ public class SceneDragon {
         Random random = new Random();
         int a, b;
         int posOb = 300+random.nextInt(100);
-        a = random.nextInt(panel.getWidth() - 280-285); 
+        a = random.nextInt(panel.getWidth() - 280-285);
         do {
         	b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
-
+ 
         int topRockCount = random.nextInt(2) + 2;
         for (int i = 0; i < topRockCount; i++) {
             JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
@@ -68,7 +68,7 @@ public class SceneDragon {
             rockLabels.add(rockLabelTop);
             panel.add(rockLabelTop);
         }
-
+ 
         
         int landRockCount = random.nextInt(2) + 2;
         for (int i = 0; i < landRockCount; i++) {
@@ -77,7 +77,7 @@ public class SceneDragon {
             rockLabels.add(rockLabelLand);
             panel.add(rockLabelLand);
         }
-
+ 
         
  
         dragon = new Dragon();
@@ -142,7 +142,6 @@ public class SceneDragon {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                sb.resetScore();
                 character = new Character_page(frame);
             }
         });
@@ -177,7 +176,7 @@ public class SceneDragon {
                             break;
                         }
                     }
-                } while (overlapping); 
+                } while (overlapping);
                 rockLabel.setLocation(rockLabel.getX(), newRockY);
             }
         }
@@ -205,4 +204,3 @@ public class SceneDragon {
 	        System.exit(0);
 	}
 }
- 
