@@ -63,13 +63,13 @@ public class SceneDragon {
         	b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
  
-        int TopWoodY = 0; // Start from the top edge of the panel
-        int LandWoodY = panel.getHeight() - 305; // Start from the bottom edge of the panel
+        int TopWoodY = 0; 
+        int LandWoodY = panel.getHeight() - 305; 
 
         int topWoodCount = random.nextInt(2) + 2;
         for (int i = 0; i < topWoodCount; i++) {
             JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
-            WoodLabelTop.setBounds(700 + i * 500, TopWoodY, 280, 285); // Move towards the right
+            WoodLabelTop.setBounds(700 + i * 500, TopWoodY, 280, 285); 
             WoodLabels.add(WoodLabelTop);
             panel.add(WoodLabelTop);
         }
@@ -77,7 +77,7 @@ public class SceneDragon {
         int landWoodCount = random.nextInt(2) + 2;
         for (int i = 0; i < landWoodCount; i++) {
             JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
-            WoodLabelLand.setBounds(700 + i * 500, LandWoodY, 280, 305); // Move towards the right
+            WoodLabelLand.setBounds(700 + i * 500, LandWoodY, 280, 305); 
             WoodLabels.add(WoodLabelLand);
             panel.add(WoodLabelLand);
         }
