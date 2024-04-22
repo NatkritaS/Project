@@ -57,7 +57,6 @@ public class SceneDragon {
         random = new Random();
         Random random = new Random();
         int a, b;
-        int posOb = 300+random.nextInt(100);
         a = random.nextInt(panel.getWidth() - 280-285);
         do {
         	b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
@@ -66,18 +65,20 @@ public class SceneDragon {
         int TopWoodY = 0; 
         int LandWoodY = panel.getHeight() - 305; 
 
-        int topWoodCount = random.nextInt(2) + 2;
+        int topWoodCount = random.nextInt(100);
         for (int i = 0; i < topWoodCount; i++) {
             JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
-            WoodLabelTop.setBounds(700 + i * 500, TopWoodY, 280, 285); 
+            int ranposTop = random.nextInt(401);
+            WoodLabelTop.setBounds(700 + i * 300, TopWoodY, 210, ranposTop); 
             WoodLabels.add(WoodLabelTop);
             panel.add(WoodLabelTop);
         }
 
-        int landWoodCount = random.nextInt(2) + 2;
+        int landWoodCount = random.nextInt(100);
         for (int i = 0; i < landWoodCount; i++) {
             JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
-            WoodLabelLand.setBounds(700 + i * 500, LandWoodY, 280, 305); 
+            int ranposLand = 500+random.nextInt(201);
+            WoodLabelLand.setBounds(700 + i * 300, LandWoodY, 210, ranposLand); 
             WoodLabels.add(WoodLabelLand);
             panel.add(WoodLabelLand);
         }
@@ -94,17 +95,17 @@ public class SceneDragon {
  
         panel.requestFocus();
         // AI แก้ไข
-        Thread moveRocksThread = new Thread(() -> {
+        Thread moveWoodThread = new Thread(() -> {
             while (true) {
                 try {
                     Thread.sleep(20);
-                    moveRocks();
+                    moveWood();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
-        moveRocksThread.start();
+        moveWoodThread.start();
  
         panel.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -125,8 +126,7 @@ public class SceneDragon {
                 }
                 	
               
-                
- 
+        
                 dragonLabel.setBounds(dragon.getxPosition(), Positiony, 130, dragon.getDragonHeight());
                 panel.revalidate();
                 panel.repaint();
@@ -152,8 +152,8 @@ public class SceneDragon {
         });
     }
  
-    private void moveRocks() {
-        boolean dragonPassedRock = false;
+    private void moveWood() {
+        boolean dragonPassedWood = false;
         for (JLabel WoodLabel : WoodLabels) {
             int x = WoodLabel.getX();
             if (x <= -200) {
@@ -162,31 +162,13 @@ public class SceneDragon {
                 WoodLabel.setLocation(x - 8, WoodLabel.getY());
             }
             
-            if (x + WoodLabel.getWidth() == dragonLabel.getX()) {
-                dragonPassedRock = true;
+           // if (x + WoodLabel.getWidth() == dragonLabel.getX()) {
+             //   dragonPassedWood = true;
             }
-        }
-        if (dragonPassedRock) {
-        	// สุ่มทุกครั้งที่ผ่านหิน
-            for (JLabel WoodLabel : WoodLabels) {
-                int currentY = WoodLabel.getY();
-                int newRockY;
-                boolean overlapping;
-                do {
-                    newRockY = random.nextInt(panel.getHeight() - WoodLabel.getHeight() - 50) + 25;
-                    overlapping = false;
-                    for (JLabel otherWoodLabel : WoodLabels) {
-                        if (otherWoodLabel != WoodLabel && Math.abs(otherWoodLabel.getY() - newRockY) == 500) {
-                            overlapping = true;
-                            break;
-                        }
-                    }
-                } while (overlapping);
-                WoodLabel.setLocation(WoodLabel.getX(), newRockY);
-            }
-        }
+        
+      
  
-        if (dragonPassedRock) {
+        if (dragonPassedWood) {
         	int addedScore = sb.CountScore();
         	sb.Max_Score();
             score.setText("Score: " + addedScore);
