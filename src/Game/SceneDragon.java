@@ -49,7 +49,6 @@ public class SceneDragon {
         sb = new Scoreboard();
         panel.requestFocus();
         
-        
         background = new ImageIcon("src/images/background_sunny.png");
  
         rockLabels = new ArrayList<>();
@@ -143,6 +142,7 @@ public class SceneDragon {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
+                sb.resetScore();
                 character = new Character_page(frame);
             }
         });
@@ -178,7 +178,6 @@ public class SceneDragon {
                         }
                     }
                 } while (overlapping); 
-
                 rockLabel.setLocation(rockLabel.getX(), newRockY);
             }
         }

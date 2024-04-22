@@ -65,8 +65,10 @@ public class Scoreboard {
 	public int getMax_Score() {
 		return MAX_SCORE;
 	}
-	
-		
+	public void resetScore() {
+		SCORE = 0;
+		MAX_SCORE = 0 ;	
+	}	
 	}
 	
 
