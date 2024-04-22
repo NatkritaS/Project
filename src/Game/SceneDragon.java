@@ -9,7 +9,7 @@ import java.util.Random;
 public class SceneDragon {
     private ImageIcon background;
     private JLabel dragonLabel;
-    private ArrayList<JLabel> rockLabels;
+    private ArrayList<JLabel> WoodLabels;
     private JFrame frame;
     private JPanel panel;
     private Random random;
@@ -18,6 +18,8 @@ public class SceneDragon {
     private JButton button_back;
     private JLabel score;
     private Scoreboard sb;
+    private  Lobby lobby;
+    
     
     protected static int Positiony = 350;
     protected static int Positionx = 400;
@@ -51,7 +53,7 @@ public class SceneDragon {
         
         background = new ImageIcon("src/images/background_sunny.png");
  
-        rockLabels = new ArrayList<>();
+        WoodLabels = new ArrayList<>();
         random = new Random();
         Random random = new Random();
         int a, b;
@@ -61,23 +63,23 @@ public class SceneDragon {
         	b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
  
-        int topRockY = 0; // Start from the top edge of the panel
-        int landRockY = panel.getHeight() - 305; // Start from the bottom edge of the panel
+        int TopWoodY = 0; // Start from the top edge of the panel
+        int LandWoodY = panel.getHeight() - 305; // Start from the bottom edge of the panel
 
-        int topRockCount = random.nextInt(2) + 2;
-        for (int i = 0; i < topRockCount; i++) {
-            JLabel rockLabelTop = new JLabel(new ImageIcon("src/images/topRock.png"));
-            rockLabelTop.setBounds(700 + i * 500, topRockY, 280, 285); // Move towards the right
-            rockLabels.add(rockLabelTop);
-            panel.add(rockLabelTop);
+        int topWoodCount = random.nextInt(2) + 2;
+        for (int i = 0; i < topWoodCount; i++) {
+            JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
+            WoodLabelTop.setBounds(700 + i * 500, TopWoodY, 280, 285); // Move towards the right
+            WoodLabels.add(WoodLabelTop);
+            panel.add(WoodLabelTop);
         }
 
-        int landRockCount = random.nextInt(2) + 2;
-        for (int i = 0; i < landRockCount; i++) {
-            JLabel rockLabelLand = new JLabel(new ImageIcon("src/images/landRock.png"));
-            rockLabelLand.setBounds(700 + i * 500, landRockY, 280, 305); // Move towards the right
-            rockLabels.add(rockLabelLand);
-            panel.add(rockLabelLand);
+        int landWoodCount = random.nextInt(2) + 2;
+        for (int i = 0; i < landWoodCount; i++) {
+            JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
+            WoodLabelLand.setBounds(700 + i * 500, LandWoodY, 280, 305); // Move towards the right
+            WoodLabels.add(WoodLabelLand);
+            panel.add(WoodLabelLand);
         }
 
  
@@ -95,7 +97,7 @@ public class SceneDragon {
         Thread moveRocksThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(20);
                     moveRocks();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -152,35 +154,35 @@ public class SceneDragon {
  
     private void moveRocks() {
         boolean dragonPassedRock = false;
-        for (JLabel rockLabel : rockLabels) {
-            int x = rockLabel.getX();
+        for (JLabel WoodLabel : WoodLabels) {
+            int x = WoodLabel.getX();
             if (x <= -200) {
-                rockLabel.setLocation(frame.getWidth(), rockLabel.getY());
+                WoodLabel.setLocation(frame.getWidth(), WoodLabel.getY());
             } else {
-                rockLabel.setLocation(x - 8, rockLabel.getY());
+                WoodLabel.setLocation(x - 8, WoodLabel.getY());
             }
             
-            if (x + rockLabel.getWidth() == dragonLabel.getX()) {
+            if (x + WoodLabel.getWidth() == dragonLabel.getX()) {
                 dragonPassedRock = true;
             }
         }
         if (dragonPassedRock) {
-            // สุ่มตำแหน่งใหม่สำหรับหินทุกตัว
-            for (JLabel rockLabel : rockLabels) {
-                int currentY = rockLabel.getY();
+        	// สุ่มทุกครั้งที่ผ่านหิน
+            for (JLabel WoodLabel : WoodLabels) {
+                int currentY = WoodLabel.getY();
                 int newRockY;
                 boolean overlapping;
                 do {
-                    newRockY = random.nextInt(panel.getHeight() - rockLabel.getHeight() - 50) + 25;
+                    newRockY = random.nextInt(panel.getHeight() - WoodLabel.getHeight() - 50) + 25;
                     overlapping = false;
-                    for (JLabel otherRockLabel : rockLabels) {
-                        if (otherRockLabel != rockLabel && Math.abs(otherRockLabel.getY() - newRockY) == 500) {
+                    for (JLabel otherWoodLabel : WoodLabels) {
+                        if (otherWoodLabel != WoodLabel && Math.abs(otherWoodLabel.getY() - newRockY) == 500) {
                             overlapping = true;
                             break;
                         }
                     }
                 } while (overlapping);
-                rockLabel.setLocation(rockLabel.getX(), newRockY);
+                WoodLabel.setLocation(WoodLabel.getX(), newRockY);
             }
         }
  
@@ -192,8 +194,8 @@ public class SceneDragon {
  
         // มังกรชนหินมั้ย
         Rectangle dragonBounds = dragonLabel.getBounds();
-        for (JLabel rockLabel : rockLabels) {
-            Rectangle rockBounds = rockLabel.getBounds();
+        for (JLabel WoodLabel : WoodLabels) {
+            Rectangle rockBounds = WoodLabel.getBounds();
             if (dragonBounds.intersects(rockBounds)) {
                 gameOver();
                 return;
@@ -205,5 +207,6 @@ public class SceneDragon {
 	private void gameOver() {
 		   JOptionPane.showMessageDialog(frame, "Game Over");
 	        System.exit(0);
+		  
 	}
 }
