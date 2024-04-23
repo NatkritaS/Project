@@ -65,16 +65,16 @@ public class SceneDragon {
         int TopWoodY = 0; 
         int LandWoodY = panel.getHeight() - 305; 
 
-        int topWoodCount = random.nextInt(100);
+        int topWoodCount = random.nextInt(1000)+2;
         for (int i = 0; i < topWoodCount; i++) {
             JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
-            int ranposTop = random.nextInt(401);
+            int ranposTop = random.nextInt(351);
             WoodLabelTop.setBounds(700 + i * 350, TopWoodY, 100, ranposTop); 
             WoodLabels.add(WoodLabelTop);
             panel.add(WoodLabelTop);
         }
 
-        int landWoodCount = random.nextInt(100);
+        int landWoodCount = random.nextInt(1000) +2;
         for (int i = 0; i < landWoodCount; i++) {
             JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
             int ranposLand = 500+random.nextInt(101);
@@ -113,7 +113,7 @@ public class SceneDragon {
         panel.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                int key1 = dragon.getDragonHeight() - dragon.getDragonHeight();
+                int key1 = panel.getHeight() - dragon.getDragonHeight();
                 
  
                 if (key == KeyEvent.VK_UP) {
