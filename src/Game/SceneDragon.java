@@ -195,7 +195,7 @@ public class SceneDragon {
                 try {
                     Thread.sleep(20);
                     Positionx -= 5;
-                    fireballLabel.setBounds(Positionx, Positiony, 50, 50);
+                    fireballLabel.setBounds(Positionx, Positiony, 250, 100);
                     if (Positionx < -50) {
                         Positionx = frame.getWidth();
                     }
