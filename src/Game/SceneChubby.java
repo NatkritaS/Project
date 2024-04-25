@@ -96,7 +96,7 @@ public class SceneChubby {
         panel.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
-                int key1 = panel.getHeight() - chubby.getDragonHeight();
+                int key1 = panel.getHeight() - chubby.getChubbyBirdHeight();
                 if (key == KeyEvent.VK_UP) {
                     if (Positiony - Chubby.GRAVITY >= 0) {
                         Positiony -= Chubby.GRAVITY;
@@ -131,7 +131,7 @@ public class SceneChubby {
         });
     }
     private void moveBubble() {
-    	boolean chubbyPassedChain = false;
+    	boolean chubbyPassedBubble = false;
     	int lastChainX = 0;
         for (JLabel bubbleLabel : bubbleLabels) {
             int x = bubbleLabel.getX();
@@ -141,13 +141,13 @@ public class SceneChubby {
             } else {
                 bubbleLabel.setLocation(x - 8, bubbleLabel.getY());
             }
-            if (x > lastChainX && x + bubbleLabel.getWidth() <= chubbyLabel.getX() && !chubbyPassedChain) {
-            	chubbyPassedChain = true;
+            if (x > lastChainX && x + bubbleLabel.getWidth() <= chubbyLabel.getX() && !chubbyPassedBubble) {
+            	chubbyPassedBubble = true;
                 lastChainX = x;
             }
         }
  
-        if (chubbyPassedChain) {
+        if (chubbyPassedBubble) {
             int addedScore = sb.CountScore();
             sb.Max_Score();
             score.setText("Score: " + addedScore);
