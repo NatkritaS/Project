@@ -152,6 +152,7 @@ public class SceneDragon {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
+                sb.ResetScore();
                 character = new Character_page(frame);
             }
         });
@@ -177,7 +178,7 @@ public class SceneDragon {
 
         if (dragonPassedWood) {
             int addedScore = sb.CountScore();
-            sb.Max_Score();
+            //sb.Max_Score();
             score.setText("Score: " + addedScore);
         }
 
