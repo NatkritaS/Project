@@ -89,7 +89,7 @@ public class SceneCutieghost {
         goldappleLabel = new JLabel(new ImageIcon("src/images/goldapple.png"));
         goldappleLabel.setBounds(Positionx, Positiony, 50, 50);
         panel.add(goldappleLabel);
-        addNewGoldapple();
+        moveGoldapple();
 
         cutie = new Cutieghost();
         cutieghostLabel = new JLabel(cutie.getCutieghostImage());
@@ -190,12 +190,10 @@ public class SceneCutieghost {
                 return;
             }
         }
+    }
     
 
-    //private void moveGoldapple() {
-    	 //if (goldappleLabel == null) {
-    	        //return; // ออกจากเมทอดถ้า goldappleLabel เป็น null
-    	 //}
+    private void moveGoldapple() {
         Thread moveGoldappleThread = new Thread(() -> {
         	while (true) {
                 try {
