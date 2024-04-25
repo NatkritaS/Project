@@ -8,15 +8,15 @@ public class Cutieghost extends Dragon {
 	    public static int yPosition;
 	    private int width = 700;
 	    private int height = 800;
-	    private ImageIcon image;
+	    private ImageIcon cutieimage;
 	    public static int GRAVITY = 10;
  
 	    public Cutieghost() {
 	        this.xPosition = 100;
 	        this.yPosition = 350;
-	        this.image = new ImageIcon("src/images/CutieGhost.png");
-	        int width = image.getIconWidth();
-	        int height =image.getIconHeight();
+	        this.cutieimage = new ImageIcon("src/images/CutieGhost.png");
+	        int width = cutieimage.getIconWidth();
+	        int height =cutieimage.getIconHeight();
 	    }
  
 	    public void moveTo(int x, int y) {
@@ -48,8 +48,8 @@ public class Cutieghost extends Dragon {
 	    }
 	    
 	    public int getCutieghostHeight() {
-	        if (image != null) { // imageต้องไม่เป็นnull
-	            return image.getIconHeight();
+	        if (cutieimage != null) { // imageต้องไม่เป็นnull
+	            return cutieimage.getIconHeight();
 	        } else {
 	            return 0;
 			}
