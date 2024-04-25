@@ -20,6 +20,8 @@ public class SceneDragon {
     private Scoreboard sb;
     private Lobby lobby;
     private JLabel fireballLabel;
+    private int fireballCount = 0;
+    
 
     protected static int Positiony = 350;
     protected static int Positionx = 400;
@@ -191,13 +193,18 @@ public class SceneDragon {
 
     private void moveFireball() {
         Thread moveFireballThread = new Thread(() -> {
-            while (true) {
+        	while (true) {
                 try {
                     Thread.sleep(20);
                     Positionx -= 5;
                     fireballLabel.setBounds(Positionx, Positiony, 250, 100);
                     if (Positionx < -50) {
                         Positionx = frame.getWidth();
+                    }
+                    
+                    // สุ่มเพิ่ม fireball ใหม่
+                    if (random.nextInt(100) < 4) { // สุ่มใหม่โดยมีโอกาส 5% ทุกครั้ง
+                        addNewFireball();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -206,7 +213,48 @@ public class SceneDragon {
         });
         moveFireballThread.start();
     }
-
+        
+        private void addNewFireball() {
+            JLabel newFireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));
+            newFireballLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 250, 100);
+            panel.add(newFireballLabel);
+            
+            Thread moveSingleFireballThread = new Thread(() -> {
+            	 int xVelocity = -5; // ความเร็วในแนวแกน x (เคลื่อนที่ไปทางซ้าย)
+                 int yVelocity = 0; // ความเร็วในแนวแกน y (ไม่เคลื่อนที่ในแนวนี้)
+                while (newFireballLabel.getX() > -50) {
+                    try {
+                        Thread.sleep(20);
+                        int newX = newFireballLabel.getX() + xVelocity;
+                        int newY = newFireballLabel.getY() + yVelocity;
+                        newFireballLabel.setLocation(newX, newY);
+                     // ถ้าลูกไฟออกนอกหน้าต่าง
+                        // เช็คการชนกับมังกร
+                        Rectangle dragonBounds = dragonLabel.getBounds();
+                        Rectangle fireballBounds = newFireballLabel.getBounds();
+                        if (dragonBounds.intersects(fireballBounds)) {
+                            // ถ้ามังกรชนกับลูกไฟ ก็ลบลูกไฟนั้นออกจาก panel และเพิ่มคะแนน
+                            panel.remove(newFireballLabel);
+                            panel.revalidate();
+                            panel.repaint();
+                            fireballCount++; // เพิ่มค่า fireballCount เมื่อมังกรเก็บลูกไฟได้
+                            int addedScore = sb.CountScore() + fireballCount; // เพิ่มคะแนนใน scoreboard โดยรวมกับค่า fireballCount
+                            score.setText("Score: " + addedScore); // แสดงคะแนนใหม่บน score
+                            // หยุดลูกไฟเคลื่อนไหว
+                            break;
+                        } else {
+                            // ถ้ามังกรไม่ชนกับลูกไฟ ก็ลบลูกไฟนั้นออกจาก panel โดยไม่เพิ่มคะแนน
+                            panel.remove(newFireballLabel);
+                            panel.revalidate();
+                            panel.repaint();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            moveSingleFireballThread.start();
+        }
     private void gameOver() {
         JOptionPane.showMessageDialog(frame, "Game Over");
         System.exit(0);
