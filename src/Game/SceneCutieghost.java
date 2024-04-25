@@ -104,7 +104,7 @@ public class SceneCutieghost {
             while (true) {
                 try {
                     Thread.sleep(100);
-                    addNewGoldapple();
+                    moveFire();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

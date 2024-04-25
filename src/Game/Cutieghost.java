@@ -15,8 +15,6 @@ public class Cutieghost extends Dragon {
 	        this.xPosition = 100;
 	        this.yPosition = 350;
 	        this.cutieimage = new ImageIcon("src/images/CutieGhost.png");
-	        int width = cutieimage.getIconWidth();
-	        int height =cutieimage.getIconHeight();
 	    }
  
 	    public void moveTo(int x, int y) {
