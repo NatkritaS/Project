@@ -19,8 +19,8 @@ public class SceneCutieghost {
     private JLabel score;
     private Scoreboard sb;
     private Lobby lobby;
-    private JLabel fireballLabel;
-    private int fireballCount = 0;
+    private JLabel goldappleLabel;
+    private int goldappleCount = 0;
     
 
     protected static int Positiony = 350;
@@ -69,27 +69,27 @@ public class SceneCutieghost {
 
         int topFireCount = random.nextInt(1000)+2;
         for (int i = 0; i < topFireCount; i++) {
-            JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/Firetop.png"));
+            JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/FireTop.png"));
             int ranposTop = random.nextInt(351);
-            FireLabelTop.setBounds(700 + i * 350, TopFireY, 100, ranposTop); 
+            FireLabelTop.setBounds(90 + i * 350, TopFireY, 100, ranposTop); 
             FireLabels.add(FireLabelTop);
             panel.add(FireLabelTop);
         }
 
         int landFireCount = random.nextInt(1000) +2;
         for (int i = 0; i < landFireCount; i++) {
-            JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/Fireland.png"));
+            JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
             int ranposLand = 500+random.nextInt(101);
-            FireLabelLand.setBounds(700 + i * 350, LandFireY, 100, ranposLand); 
+            FireLabelLand.setBounds(170 + i * 350, LandFireY, 100, ranposLand); 
             FireLabels.add(FireLabelLand);
             panel.add(FireLabelLand);
         }
 
-        //Positionx = -50;
-        //fireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));
-        //fireballLabel.setBounds(Positionx, Positiony, 50, 50);
-        //panel.add(fireballLabel);
-        //moveFireball();
+        Positionx -= 2;
+        goldappleLabel = new JLabel(new ImageIcon("src/images/goldapple.png"));
+        goldappleLabel.setBounds(Positionx, Positiony, 50, 50);
+        panel.add(goldappleLabel);
+        addNewGoldapple();
 
         cutie = new Cutieghost();
         cutieghostLabel = new JLabel(cutie.getCutieghostImage());
@@ -103,8 +103,8 @@ public class SceneCutieghost {
         Thread moveFireThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(20);
-                    moveFireball();
+                    Thread.sleep(100);
+                    addNewGoldapple();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -178,74 +178,77 @@ public class SceneCutieghost {
 
         if (CutieghostPassedFire) {
             int addedScore = sb.CountScore();
-            //sb.Max_Score();
+          
             score.setText("Score: " + addedScore);
         }
 
-        Rectangle dragonBounds = cutieghostLabel.getBounds();
+        Rectangle cutieghostBounds = cutieghostLabel.getBounds();
         for (JLabel FireLabel : FireLabels) {
             Rectangle fireBounds = FireLabel.getBounds();
-            if (fireBounds.intersects(fireBounds)) {
+            if (cutieghostBounds.intersects(fireBounds)) {
                 gameOver();
                 return;
             }
         }
-    }
+    
 
-    private void moveFireball() {
-        Thread moveFireballThread = new Thread(() -> {
+    //private void moveGoldapple() {
+    	 //if (goldappleLabel == null) {
+    	        //return; // ออกจากเมทอดถ้า goldappleLabel เป็น null
+    	 //}
+        Thread moveGoldappleThread = new Thread(() -> {
         	while (true) {
                 try {
                     Thread.sleep(20);
                     Positionx -= 5;
-                    fireballLabel.setBounds(Positionx, Positiony, 250, 100);
+                    goldappleLabel.setBounds(Positionx, Positiony, 250, 100);
                     if (Positionx < -50) {
                         Positionx = frame.getWidth();
                     }
                     
-                    // สุ่มเพิ่ม fireball ใหม่
+                    // สุ่มเพิ่ม goldapple ใหม่
                     if (random.nextInt(100) < 4) { // สุ่มใหม่โดยมีโอกาส 5% ทุกครั้ง
-                        addNewFireball();
+                    	addNewGoldapple();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         });
-        moveFireballThread.start();
+        moveGoldappleThread.start();
     }
-        
-        private void addNewFireball() {
-            JLabel newFireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));
-            newFireballLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 250, 100);
-            panel.add(newFireballLabel);
+
+        private void addNewGoldapple() {
+            JLabel newGoldappleLabel = new JLabel(new ImageIcon("src/images/goldapple.png"));
+            newGoldappleLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 250, 100);
+            panel.add(newGoldappleLabel);
             
-            Thread moveSingleFireballThread = new Thread(() -> {
+            Thread moveSingleGoldappleThread = new Thread(() -> {
             	 int xVelocity = -5; // ความเร็วในแนวแกน x (เคลื่อนที่ไปทางซ้าย)
                  int yVelocity = 0; // ความเร็วในแนวแกน y (ไม่เคลื่อนที่ในแนวนี้)
-                while (newFireballLabel.getX() > -50) {
+                while (newGoldappleLabel.getX() > -50) {
                     try {
                         Thread.sleep(20);
-                        int newX = newFireballLabel.getX() + xVelocity;
-                        int newY = newFireballLabel.getY() + yVelocity;
-                        newFireballLabel.setLocation(newX, newY);
+                        int newX = newGoldappleLabel.getX() + xVelocity;
+                        int newY = newGoldappleLabel.getY() + yVelocity;
+                        newGoldappleLabel.setLocation(newX, newY);
                      // ถ้าลูกไฟออกนอกหน้าต่าง
                         // เช็คการชนกับมังกร
-                        Rectangle fireBounds = cutieghostLabel.getBounds();
-                        Rectangle fireballBounds = newFireballLabel.getBounds();
-                        if (fireBounds.intersects(fireballBounds)) {
+                        Rectangle appleBounds = cutieghostLabel.getBounds();
+                        Rectangle goldappleBounds = newGoldappleLabel.getBounds();
+                        if (appleBounds.intersects(goldappleBounds)) {
                             // ถ้ามังกรชนกับลูกไฟ ก็ลบลูกไฟนั้นออกจาก panel และเพิ่มคะแนน
-                            panel.remove(newFireballLabel);
+                            panel.remove(newGoldappleLabel);
                             panel.revalidate();
                             panel.repaint();
-                            fireballCount++; // เพิ่มค่า fireballCount เมื่อมังกรเก็บลูกไฟได้
-                            int addedScore = sb.CountScore() + fireballCount; // เพิ่มคะแนนใน scoreboard โดยรวมกับค่า fireballCount
+                            goldappleCount++; // เพิ่มค่า fireballCount เมื่อมังกรเก็บลูกไฟได้
+                            int addedScore = sb.CountScore() + goldappleCount; // เพิ่มคะแนนใน scoreboard โดยรวมกับค่า fireballCount
                             score.setText("Score: " + addedScore); // แสดงคะแนนใหม่บน score
                             // หยุดลูกไฟเคลื่อนไหว
                             break;
                         } else {
                             // ถ้ามังกรไม่ชนกับลูกไฟ ก็ลบลูกไฟนั้นออกจาก panel โดยไม่เพิ่มคะแนน
-                            panel.remove(newFireballLabel);
+                            panel.remove(newGoldappleLabel);
                             panel.revalidate();
                             panel.repaint();
                         }
@@ -254,7 +257,7 @@ public class SceneCutieghost {
                     }
                 }
             });
-            moveSingleFireballThread.start();
+            moveSingleGoldappleThread.start();
         }
     private void gameOver() {
         JOptionPane.showMessageDialog(frame, "Game Over");
