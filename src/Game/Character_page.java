@@ -108,5 +108,12 @@ public class Character_page  {
                          SceneChubby s = new SceneChubby(frame);
             }
         });
+        cutieghost_choose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                     	frame.getContentPane().removeAll();
+                     	frame.repaint();
+                         SceneCutieghost s = new SceneCutieghost(frame);
+            }
+        });
 	}
 }
