@@ -8,7 +8,7 @@ public class Main {
 		Lobby  l = new Lobby(new JFrame());
 		//Scoreboard  s = new Scoreboard(new JFrame());
 		// Character_page c = new Character_page();
-	
+		
 	}
 
 }
