@@ -69,9 +69,9 @@ public class SceneCutieghost {
 
         int topFireCount = random.nextInt(1000)+2;
         for (int i = 0; i < topFireCount; i++) {
-            JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/FireTop.png"));
+            JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/top.png"));
             int ranposTop = random.nextInt(351);
-            FireLabelTop.setBounds(90 + i * 350, TopFireY, 100, ranposTop); 
+            FireLabelTop.setBounds(200 + i * 350, TopFireY, 100, ranposTop); 
             FireLabels.add(FireLabelTop);
             panel.add(FireLabelTop);
         }
@@ -80,7 +80,7 @@ public class SceneCutieghost {
         for (int i = 0; i < landFireCount; i++) {
             JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
             int ranposLand = 500+random.nextInt(101);
-            FireLabelLand.setBounds(170 + i * 350, LandFireY, 100, ranposLand); 
+            FireLabelLand.setBounds(140 + i * 350, LandFireY, 100, ranposLand); 
             FireLabels.add(FireLabelLand);
             panel.add(FireLabelLand);
         }
@@ -204,8 +204,7 @@ public class SceneCutieghost {
                         Positionx = frame.getWidth();
                     }
                     
-                    // สุ่มเพิ่ม goldapple ใหม่
-                    if (random.nextInt(100) < 4) { // สุ่มใหม่โดยมีโอกาส 5% ทุกครั้ง
+                    if (random.nextInt(100) < 4) { 
                     	addNewGoldapple();
                     }
                 } catch (InterruptedException e) {
@@ -222,15 +221,14 @@ public class SceneCutieghost {
             panel.add(newGoldappleLabel);
             
             Thread moveSingleGoldappleThread = new Thread(() -> {
-            	 int xVelocity = -5; // ความเร็วในแนวแกน x (เคลื่อนที่ไปทางซ้าย)
-                 int yVelocity = 0; // ความเร็วในแนวแกน y (ไม่เคลื่อนที่ในแนวนี้)
+            	 int xVelocity = -5; 
+                 int yVelocity = 0; 
                 while (newGoldappleLabel.getX() > -50) {
                     try {
                         Thread.sleep(20);
                         int newX = newGoldappleLabel.getX() + xVelocity;
                         int newY = newGoldappleLabel.getY() + yVelocity;
-                        newGoldappleLabel.setLocation(newX, newY);
-                     // ถ้าลูกไฟออกนอกหน้าต่าง
+                        newGoldappleLabel.setLocation(newX, newY); 
                         // เช็คการชนกับมังกร
                         Rectangle appleBounds = cutieghostLabel.getBounds();
                         Rectangle goldappleBounds = newGoldappleLabel.getBounds();
@@ -240,12 +238,10 @@ public class SceneCutieghost {
                             panel.revalidate();
                             panel.repaint();
                             goldappleCount++; // เพิ่มค่า fireballCount เมื่อมังกรเก็บลูกไฟได้
-                            int addedScore = sb.CountScore() + goldappleCount; // เพิ่มคะแนนใน scoreboard โดยรวมกับค่า fireballCount
-                            score.setText("Score: " + addedScore); // แสดงคะแนนใหม่บน score
-                            // หยุดลูกไฟเคลื่อนไหว
+                            int addedScore = sb.CountScore() + goldappleCount; 
+                            score.setText("Score: " + addedScore); 
                             break;
                         } else {
-                            // ถ้ามังกรไม่ชนกับลูกไฟ ก็ลบลูกไฟนั้นออกจาก panel โดยไม่เพิ่มคะแนน
                             panel.remove(newGoldappleLabel);
                             panel.revalidate();
                             panel.repaint();
