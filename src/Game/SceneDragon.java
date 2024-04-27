@@ -178,7 +178,6 @@ public class SceneDragon {
 
         if (dragonPassedWood) {
             int addedScore = sb.CountScore();
-            //sb.Max_Score();
             score.setText("Score: " + addedScore);
         }
 
@@ -202,9 +201,8 @@ public class SceneDragon {
                     if (Positionx < -50) {
                         Positionx = frame.getWidth();
                     }
-                    
-                    // สุ่มเพิ่ม fireball ใหม่
-                    if (random.nextInt(100) < 4) { // สุ่มใหม่โดยมีโอกาส 5% ทุกครั้ง
+                
+                    if (random.nextInt(100) < 4) { 
                         addNewFireball();
                     }
                 } catch (InterruptedException e) {
@@ -221,15 +219,14 @@ public class SceneDragon {
             panel.add(newFireballLabel);
             
             Thread moveSingleFireballThread = new Thread(() -> {
-            	 int xVelocity = -5; // ความเร็วในแนวแกน x (เคลื่อนที่ไปทางซ้าย)
-                 int yVelocity = 0; // ความเร็วในแนวแกน y (ไม่เคลื่อนที่ในแนวนี้)
+            	 int xVelocity = -5;
+                 int yVelocity = 0; 
                 while (newFireballLabel.getX() > -50) {
                     try {
                         Thread.sleep(20);
                         int newX = newFireballLabel.getX() + xVelocity;
                         int newY = newFireballLabel.getY() + yVelocity;
                         newFireballLabel.setLocation(newX, newY);
-                     // ถ้าลูกไฟออกนอกหน้าต่าง
                         // เช็คการชนกับมังกร
                         Rectangle dragonBounds = dragonLabel.getBounds();
                         Rectangle fireballBounds = newFireballLabel.getBounds();
@@ -238,13 +235,11 @@ public class SceneDragon {
                             panel.remove(newFireballLabel);
                             panel.revalidate();
                             panel.repaint();
-                            fireballCount++; // เพิ่มค่า fireballCount เมื่อมังกรเก็บลูกไฟได้
-                            int addedScore = sb.CountScore() + fireballCount; // เพิ่มคะแนนใน scoreboard โดยรวมกับค่า fireballCount
-                            score.setText("Score: " + addedScore); // แสดงคะแนนใหม่บน score
-                            // หยุดลูกไฟเคลื่อนไหว
+                            fireballCount++; 
+                            int addedScore = sb.CountScore() + fireballCount; 
+                            score.setText("Score: " + addedScore);   
                             break;
                         } else {
-                            // ถ้ามังกรไม่ชนกับลูกไฟ ก็ลบลูกไฟนั้นออกจาก panel โดยไม่เพิ่มคะแนน
                             panel.remove(newFireballLabel);
                             panel.revalidate();
                             panel.repaint();
