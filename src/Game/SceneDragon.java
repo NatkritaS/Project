@@ -169,11 +169,10 @@ public class SceneDragon {
             }
         }
  
-        if (dragonPassedWood) {
+       if (dragonPassedWood) {
             int addedScore = sb.CountScore();
             score.setText("Score: " + addedScore);
-        }
- 
+       }
         Rectangle dragonBounds = dragonLabel.getBounds();
         for (JLabel WoodLabel : WoodLabels) {
             Rectangle rockBounds = WoodLabel.getBounds();
@@ -229,7 +228,7 @@ public class SceneDragon {
                             panel.revalidate();
                             panel.repaint();
                             sb.getScore();
-                            int addedScore = sb.CountScore() + sb.Eat();
+                            int addedScore = sb.Eat();
                             score.setText("Score: " + addedScore);   
                             break;
                         } else {
