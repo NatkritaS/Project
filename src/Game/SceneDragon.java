@@ -67,8 +67,8 @@ public class SceneDragon {
             int LandWoodY = rand.nextInt(401) + 300;
             int TopWoodX = LandWoodY - 700;
             
-            WoodLabelTop.setBounds(700 + i * 400, TopWoodX, 100, 500);
-            WoodLabelLand.setBounds(700 + i * 400, LandWoodY, 100, 500);
+            WoodLabelTop.setBounds(700 + i * 500, TopWoodX, 100, 500);
+            WoodLabelLand.setBounds(700 + i * 500, LandWoodY, 100, 500);
             
             WoodLabels.add(WoodLabelTop);
             WoodLabels.add(WoodLabelLand);
