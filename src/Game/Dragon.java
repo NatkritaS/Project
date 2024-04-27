@@ -11,7 +11,7 @@ public class Dragon {
     public static int xPosition;
     public static int yPosition;
     private ImageIcon dragonImage;
-    public static int GRAVITY = 15;
+    public static int GRAVITY = 20;
 
     public Dragon() {
         this.xPosition = 100;

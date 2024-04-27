@@ -1,11 +1,11 @@
 package Game;
-
+ 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
-
+ 
 public class SceneDragon {
     private ImageIcon background;
     private JLabel dragonLabel;
@@ -22,16 +22,16 @@ public class SceneDragon {
     private JLabel fireballLabel;
     private int fireballCount = 0;
     
-
+ 
     protected static int Positiony = 350;
     protected static int Positionx = 400;
-
+ 
     public SceneDragon(JFrame J) {
         frame = J;
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-
+ 
         panel = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -48,18 +48,18 @@ public class SceneDragon {
         score.setBounds(600, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
-
+ 
         frame.setVisible(true);
         sb = new Scoreboard();
         panel.requestFocus();
         
         background = new ImageIcon("src/images/background_sunny.png");
-
+ 
         WoodLabels = new ArrayList<>();
         random = new Random();
         Random rand = new Random();
         int totalWoodCount = rand.nextInt(1000 - 2 + 1) + 2;
-
+ 
         for (int i = 0; i < totalWoodCount; i++) {
             JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
             JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
@@ -67,8 +67,8 @@ public class SceneDragon {
             int LandWoodY = rand.nextInt(401) + 300;
             int TopWoodX = LandWoodY - 700;
             
-            WoodLabelTop.setBounds(700 + i * 350, TopWoodX, 100, 500);
-            WoodLabelLand.setBounds(700 + i * 350, LandWoodY, 100, 500);
+            WoodLabelTop.setBounds(700 + i * 400, TopWoodX, 100, 500);
+            WoodLabelLand.setBounds(700 + i * 400, LandWoodY, 100, 500);
             
             WoodLabels.add(WoodLabelTop);
             WoodLabels.add(WoodLabelLand);
@@ -76,21 +76,21 @@ public class SceneDragon {
             panel.add(WoodLabelTop);
             panel.add(WoodLabelLand);
         }
-
-
+ 
+ 
         Positionx = -50;
         fireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));
         fireballLabel.setBounds(Positionx, Positiony, 50, 50);
         panel.add(fireballLabel);
         moveFireball();
-
+ 
         dragon = new Dragon();
         dragonLabel = new JLabel(dragon.getDragonImage());
         dragonLabel.setBounds(dragon.getxPosition(), dragon.getyPosition(), 130, 100);
         panel.add(dragonLabel);
         frame.add(panel);
         frame.setVisible(true);
-
+ 
         panel.requestFocus();
         // AI แก้ไข
         Thread moveWoodThread = new Thread(() -> {
@@ -104,7 +104,7 @@ public class SceneDragon {
             }
         });
         moveWoodThread.start();
-
+ 
         panel.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 int key = e.getKeyCode();
@@ -150,11 +150,11 @@ public class SceneDragon {
             }
         });
     }
-
+ 
     private void moveWood() {
         boolean dragonPassedWood = false;
         int lastWoodX = 0;
-
+ 
         for (JLabel WoodLabel : WoodLabels) {
             int x = WoodLabel.getX();
             if (x <= -200) {
@@ -162,18 +162,18 @@ public class SceneDragon {
             } else {
                 WoodLabel.setLocation(x - 8, WoodLabel.getY());
             }
-
+ 
             if (x > lastWoodX && x + WoodLabel.getWidth() <= dragonLabel.getX() && !dragonPassedWood) {
                 dragonPassedWood = true;
                 lastWoodX = x;
             }
         }
-
+ 
         if (dragonPassedWood) {
             int addedScore = sb.CountScore();
             score.setText("Score: " + addedScore);
         }
-
+ 
         Rectangle dragonBounds = dragonLabel.getBounds();
         for (JLabel WoodLabel : WoodLabels) {
             Rectangle rockBounds = WoodLabel.getBounds();
@@ -183,7 +183,7 @@ public class SceneDragon {
             }
         }
     }
-
+ 
     private void moveFireball() {
         Thread moveFireballThread = new Thread(() -> {
         	while (true) {
@@ -195,7 +195,7 @@ public class SceneDragon {
                         Positionx = frame.getWidth();
                     }
                 
-                    if (random.nextInt(100) < 4) { 
+                    if (random.nextInt(100) < 4) {
                         addNewFireball();
                     }
                 } catch (InterruptedException e) {
@@ -213,7 +213,7 @@ public class SceneDragon {
             
             Thread moveSingleFireballThread = new Thread(() -> {
             	 int xVelocity = -5;
-                 int yVelocity = 0; 
+                 int yVelocity = 0;
                 while (newFireballLabel.getX() > -50) {
                     try {
                         Thread.sleep(20);
@@ -228,8 +228,8 @@ public class SceneDragon {
                             panel.remove(newFireballLabel);
                             panel.revalidate();
                             panel.repaint();
-                            fireballCount++; 
-                            int addedScore = sb.CountScore() + fireballCount; 
+                            fireballCount++;
+                            int addedScore = sb.CountScore() + fireballCount;
                             score.setText("Score: " + addedScore);   
                             break;
                         } else {
