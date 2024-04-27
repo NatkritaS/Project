@@ -69,7 +69,10 @@ public class Scoreboard {
 		SCORE = 0;
 		MAX_SCORE = 0 ;	
 	}	
+	public int Eat() {
+		return SCORE += 10; 
 	}
+}
 	
 
 

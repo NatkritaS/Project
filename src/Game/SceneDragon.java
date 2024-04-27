@@ -228,8 +228,8 @@ public class SceneDragon {
                             panel.remove(newFireballLabel);
                             panel.revalidate();
                             panel.repaint();
-                            fireballCount++;
-                            int addedScore = sb.CountScore() + fireballCount;
+                            sb.getScore();
+                            int addedScore = sb.CountScore() + sb.Eat();
                             score.setText("Score: " + addedScore);   
                             break;
                         } else {
