@@ -57,33 +57,26 @@ public class SceneDragon {
 
         WoodLabels = new ArrayList<>();
         random = new Random();
-        Random random = new Random();
-        int a, b;
-        a = random.nextInt(panel.getWidth() - 280-285);
-        do {
-            b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
-        } while (Math.abs(a - b) < 500);
+        Random rand = new Random();
+        int totalWoodCount = rand.nextInt(1000 - 2 + 1) + 2;
 
-        int TopWoodY = 0; 
-        int LandWoodY = panel.getHeight() - 305; 
-
-        int topWoodCount = random.nextInt(1000)+2;
-        for (int i = 0; i < topWoodCount; i++) {
+        for (int i = 0; i < totalWoodCount; i++) {
             JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
-            int ranposTop = random.nextInt(351);
-            WoodLabelTop.setBounds(700 + i * 350, TopWoodY, 100, ranposTop); 
-            WoodLabels.add(WoodLabelTop);
-            panel.add(WoodLabelTop);
-        }
-
-        int landWoodCount = random.nextInt(1000) +2;
-        for (int i = 0; i < landWoodCount; i++) {
             JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
-            int ranposLand = 500+random.nextInt(101);
-            WoodLabelLand.setBounds(700 + i * 350, LandWoodY, 100, ranposLand); 
+            
+            int LandWoodY = rand.nextInt(401) + 300;
+            int TopWoodX = LandWoodY - 700;
+            
+            WoodLabelTop.setBounds(700 + i * 350, TopWoodX, 100, 500);
+            WoodLabelLand.setBounds(700 + i * 350, LandWoodY, 100, 500);
+            
+            WoodLabels.add(WoodLabelTop);
             WoodLabels.add(WoodLabelLand);
+            
+            panel.add(WoodLabelTop);
             panel.add(WoodLabelLand);
         }
+
 
         Positionx = -50;
         fireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));

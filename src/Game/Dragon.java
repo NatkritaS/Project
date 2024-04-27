@@ -10,8 +10,6 @@ import java.awt.event.KeyEvent;
 public class Dragon {
     public static int xPosition;
     public static int yPosition;
-    private int width = 700;
-    private int height = 800;
     private ImageIcon dragonImage;
     public static int GRAVITY = 15;
 
