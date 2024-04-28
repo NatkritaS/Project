@@ -135,14 +135,17 @@ public class SceneChubby {
                 frame.getContentPane().removeAll();
                 frame.repaint();
                 character = new Character_page(frame);
+                BubbleMoving = false;
+                
             }
         });
     }
+    private boolean BubbleMoving = true;
 
     private void moveBubble() {
         boolean chubbyPassedBubble = false;
         int lastbubbleX = 0;
-
+        if (!BubbleMoving) return;
         for (JLabel bubbleLabel : bubbleLabels) {
             int x = bubbleLabel.getX();
             if (x <= -200) {
