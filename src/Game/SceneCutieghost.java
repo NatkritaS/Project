@@ -192,12 +192,13 @@ public class SceneCutieghost {
         }
     }
     
-
+    private boolean isGameOver = false;
     private void moveGoldapple() {
         Thread moveGoldappleThread = new Thread(() -> {
         	while (true) {
                 try {
                     Thread.sleep(20);
+                    if (isGameOver) return;
                     Positionx -= 5;
                     goldappleLabel.setBounds(Positionx, Positiony, 250, 100);
                     if (Positionx < -50) {
@@ -238,9 +239,11 @@ public class SceneCutieghost {
                             panel.revalidate();
                             panel.repaint();
                             goldappleCount++; // เพิ่มค่า fireballCount เมื่อมังกรเก็บลูกไฟได้
-                            int addedScore = sb.CountScore() + goldappleCount; 
+                            if (!isGameOver) {
+                            int addedScore = goldappleCount; 
                             score.setText("Score: " + addedScore); 
                             break;
+                            }
                         } else {
                             panel.remove(newGoldappleLabel);
                             panel.revalidate();
@@ -254,7 +257,9 @@ public class SceneCutieghost {
             moveSingleGoldappleThread.start();
         }
     private void gameOver() {
-        JOptionPane.showMessageDialog(frame, "Game Over");
+       isGameOver = true;
+    	JOptionPane.showMessageDialog(frame, "Game Over");
         System.exit(0);
+        
     }
 }

@@ -61,8 +61,8 @@ public class SceneChubby {
             int landBubbleY = rand.nextInt(401) + 300;
             int topBubbleX = landBubbleY - 700;
             
-            bubbleLabelTop.setBounds(700 + i * 500, topBubbleX, 100, 500);
-            bubbleLabelLand.setBounds(700 + i * 500, landBubbleY, 100, 500);
+            bubbleLabelTop.setBounds(700 + i * 500, topBubbleX, 100, 460);
+            bubbleLabelLand.setBounds(700 + i * 500, landBubbleY, 100, 445);
             
             bubbleLabels.add(bubbleLabelTop);
             bubbleLabels.add(bubbleLabelLand);
@@ -191,7 +191,7 @@ public class SceneChubby {
 
     private void addNewGoldfish() {
         JLabel newGoldfishLabel = new JLabel(new ImageIcon("src/images/Goldfish.png"));
-        newGoldfishLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 100, 50);
+        newGoldfishLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 100, 70);
         panel.add(newGoldfishLabel);
         
         Thread moveSingleGoldfishThread = new Thread(() -> {
@@ -213,7 +213,7 @@ public class SceneChubby {
                         panel.repaint();
                         // Increase score and update score label
                         goldfishCount++;
-                        int addedScore = sb.CountScore() + goldfishCount;
+                        int addedScore = goldfishCount;
                         score.setText("Score: " + addedScore);
                         break;
                     }
@@ -221,7 +221,7 @@ public class SceneChubby {
                     e.printStackTrace();
                 }
             }
-            if (newGoldfishLabel.getX() < -50) {
+            if (newGoldfishLabel.getX() < -20) {
                 panel.remove(newGoldfishLabel);
                 panel.revalidate();
                 panel.repaint();
