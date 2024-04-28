@@ -145,13 +145,16 @@ public class SceneDragon {
                 public void actionPerformed(ActionEvent e) {
                     frame.getContentPane().removeAll();
                     frame.repaint();
+                    
                     sb.ResetScore();
                     character = new Character_page(frame);
+                    woodMoving = false;
                 }
             });
         }
-     
+        private boolean woodMoving = true;
         private void moveWood() {
+        	if (!woodMoving) return;
             boolean dragonPassedWood = false;
             int lastWoodX = 0;
      
