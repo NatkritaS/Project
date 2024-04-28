@@ -249,22 +249,29 @@ public class SceneDragon {
         heartcount = 3;
         for (int i = 0; i < heartcount; i++) {
             JLabel heartLabel = new JLabel(new ImageIcon("src/images/Heart.png"));
-            heartLabel.setBounds(2 + i * 30, 20, 40, 50); 
+            heartLabel.setBounds(2 + i * 30, 20, 40, 50);
             panel.add(heartLabel);
             heartLabels.add(heartLabel);
         }
         }
-        private void gameOver() {
-            JOptionPane.showMessageDialog(frame, "Game Over");
-            System.exit(0);
-            
-            panel.remove(heartLabels.get(heartcount - 1));
-            panel.revalidate();
-            panel.repaint();
-            heartcount--; 
-        
-        if (heartcount == 0) {
-            gameOver();
+        private void updateHeartPositions() {
+            for (int i = 0; i < heartcount; i++) {
+                JLabel heartLabel = heartLabels.get(i);
+                heartLabel.setBounds(2 + i * 30, 20, 40, 50);
+            }
         }
-    }
+
+        private void gameOver() {
+            if (heartcount > 0) {
+                for (int j = 0; j < heartLabels.size(); j++) {
+                    panel.remove(heartLabels.get(j--));
+                    panel.revalidate();
+                    panel.repaint();
+                    heartcount--;
+                    updateHeartPositions();
+                }
+            }
+        }
+
+
 }
