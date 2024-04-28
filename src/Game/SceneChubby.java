@@ -63,6 +63,8 @@ public class SceneChubby {
             int LandbubbleY = rand.nextInt(401) + 300;
             int TopbubbleX = LandbubbleY - 700;
             
+            bubbleLabelTop.setBounds(700 + i * 500, TopbubbleX, 100, 500);
+            bubbleLabelLand.setBounds(700 + i * 500, LandbubbleY, 100, 500);
             bubbleLabelTop.setBounds(700 + i * 500, TopbubbleX, 100, 460);
             bubbleLabelLand.setBounds(700 + i * 500, LandbubbleY, 100, 445);
             
