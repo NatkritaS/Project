@@ -79,7 +79,7 @@ public class SceneChubby {
 
         chubby = new Chubby();
         chubbyLabel = new JLabel(chubby.getChubbyBirdImage());
-        chubbyLabel.setBounds(chubby.getxPosition(), chubby.getyPosition(), 130, 100);
+        chubbyLabel.setBounds(chubby.getxPosition(), chubby.getyPosition(), 90, 80);
         panel.add(chubbyLabel);
         frame.add(panel);
         frame.setVisible(true);
@@ -177,7 +177,7 @@ public class SceneChubby {
                 try {
                     Thread.sleep(20);
                     Positionx -= 5;
-                    goldfishLabel.setBounds(Positionx, Positiony, 250, 100);
+                    goldfishLabel.setBounds(Positionx, Positiony, 100, 100);
                     if (random.nextInt(100) < 2) {
                         addNewGoldfish();
                     }
@@ -191,7 +191,7 @@ public class SceneChubby {
 
     private void addNewGoldfish() {
         JLabel newGoldfishLabel = new JLabel(new ImageIcon("src/images/Goldfish.png"));
-        newGoldfishLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 50, 50);
+        newGoldfishLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 100, 50);
         panel.add(newGoldfishLabel);
         
         Thread moveSingleGoldfishThread = new Thread(() -> {
