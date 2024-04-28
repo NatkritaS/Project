@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SceneChubby {
-    private static final Component CubbyLabel = null;
-	private ImageIcon background;
+    private ImageIcon background;
     private JLabel chubbyLabel;
     private ArrayList<JLabel> bubbleLabels;
     private JFrame frame;
@@ -20,8 +19,7 @@ public class SceneChubby {
     private JLabel score;
     private Scoreboard sb;
     private JLabel goldfishLabel;
-	private int goldfishCount = 0;
-	
+    private int goldfishCount = 0;
     protected static int Positiony = 350;
     protected static int Positionx = 400;
 
@@ -39,6 +37,7 @@ public class SceneChubby {
                 }
             }
         };
+        
         panel.setLayout(null);
         score = new JLabel("Score:");
         Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
@@ -54,19 +53,16 @@ public class SceneChubby {
         random = new Random();
         Random rand = new Random();
         
-        int totalbubbleCount = rand.nextInt(1000 - 2 + 1) + 2;
-        
-        for (int i = 0; i < totalbubbleCount; i++) {
+        int totalBubbleCount = rand.nextInt(1000 - 2 + 1) + 2;
+        for (int i = 0; i < totalBubbleCount; i++) {
             JLabel bubbleLabelTop = new JLabel(new ImageIcon("src/images/bubbleTop.png"));
             JLabel bubbleLabelLand = new JLabel(new ImageIcon("src/images/bubbleLand.png"));
             
-            int LandbubbleY = rand.nextInt(401) + 300;
-            int TopbubbleX = LandbubbleY - 700;
+            int landBubbleY = rand.nextInt(401) + 300;
+            int topBubbleX = landBubbleY - 700;
             
-            bubbleLabelTop.setBounds(700 + i * 500, TopbubbleX, 100, 500);
-            bubbleLabelLand.setBounds(700 + i * 500, LandbubbleY, 100, 500);
-            bubbleLabelTop.setBounds(700 + i * 500, TopbubbleX, 100, 460);
-            bubbleLabelLand.setBounds(700 + i * 500, LandbubbleY, 100, 445);
+            bubbleLabelTop.setBounds(700 + i * 500, topBubbleX, 100, 500);
+            bubbleLabelLand.setBounds(700 + i * 500, landBubbleY, 100, 500);
             
             bubbleLabels.add(bubbleLabelTop);
             bubbleLabels.add(bubbleLabelLand);
@@ -89,7 +85,7 @@ public class SceneChubby {
         frame.setVisible(true);
         panel.requestFocus();
 
-        Thread movebubbleThread = new Thread(() -> {
+        Thread moveBubbleThread = new Thread(() -> {
             while (true) {
                 try {
                     Thread.sleep(20);
@@ -99,7 +95,7 @@ public class SceneChubby {
                 }
             }
         });
-        movebubbleThread.start();
+        moveBubbleThread.start();
 
         panel.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -136,18 +132,16 @@ public class SceneChubby {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
+                sb.ResetScore();
                 character = new Character_page(frame);
-                BubbleMoving = false;
-                
             }
         });
     }
-    private boolean BubbleMoving = true;
 
     private void moveBubble() {
         boolean chubbyPassedBubble = false;
-        int lastbubbleX = 0;
-        if (!BubbleMoving) return;
+        int lastBubbleX = 0;
+
         for (JLabel bubbleLabel : bubbleLabels) {
             int x = bubbleLabel.getX();
             if (x <= -200) {
@@ -156,15 +150,14 @@ public class SceneChubby {
                 bubbleLabel.setLocation(x - 8, bubbleLabel.getY());
             }
 
-            if (x > lastbubbleX && x + bubbleLabel.getWidth() <= chubbyLabel.getX() && !chubbyPassedBubble) {
+            if (x > lastBubbleX && x + bubbleLabel.getWidth() <= chubbyLabel.getX() && !chubbyPassedBubble) {
                 chubbyPassedBubble = true;
-                lastbubbleX = x;
+                lastBubbleX = x;
             }
         }
 
         if (chubbyPassedBubble) {
             int addedScore = sb.CountScore();
-            sb.Max_Score();
             score.setText("Score: " + addedScore);
         }
 
@@ -179,17 +172,13 @@ public class SceneChubby {
     }
 
     private void moveGoldfish() {
-    	Thread moveGoldfishThread = new Thread(() -> {
-        	while (true) {
+        Thread moveGoldfishThread = new Thread(() -> {
+            while (true) {
                 try {
                     Thread.sleep(20);
                     Positionx -= 5;
                     goldfishLabel.setBounds(Positionx, Positiony, 250, 100);
-                    if (Positionx < -50) {
-                        Positionx = frame.getWidth();
-                    }
-                
-                    if (random.nextInt(100) < 4) {
+                    if (random.nextInt(100) < 2) {
                         addNewGoldfish();
                     }
                 } catch (InterruptedException e) {
@@ -199,13 +188,14 @@ public class SceneChubby {
         });
         moveGoldfishThread.start();
     }
+
     private void addNewGoldfish() {
-    	JLabel newGoldfishLabel = new JLabel(new ImageIcon("src/images/Goldfish.png"));
-        newGoldfishLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 250, 100);
+        JLabel newGoldfishLabel = new JLabel(new ImageIcon("src/images/Goldfish.png"));
+        newGoldfishLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 50, 50);
         panel.add(newGoldfishLabel);
         
         Thread moveSingleGoldfishThread = new Thread(() -> {
-        	int xVelocity = -5;
+            int xVelocity = -5;
             int yVelocity = 0;
             while (newGoldfishLabel.getX() > -50) {
                 try {
@@ -213,32 +203,34 @@ public class SceneChubby {
                     int newX = newGoldfishLabel.getX() + xVelocity;
                     int newY = newGoldfishLabel.getY() + yVelocity;
                     newGoldfishLabel.setLocation(newX, newY);
-                    // เช็คการชนกับนก
-                    Rectangle cubbyBounds = CubbyLabel.getBounds();
+                    
+                    // Check for collision with chubby
+                    Rectangle chubbyBounds = chubbyLabel.getBounds();
                     Rectangle goldfishBounds = newGoldfishLabel.getBounds();
-                    if (cubbyBounds.intersects(goldfishBounds)) {
-                        // ถ้านกอ้วนชนปลา ก็ลบปลานั้นออกจาก panel และเพิ่มคะแนน
+                    if (chubbyBounds.intersects(goldfishBounds)) {
                         panel.remove(newGoldfishLabel);
                         panel.revalidate();
                         panel.repaint();
+                        // Increase score and update score label
                         goldfishCount++;
                         int addedScore = sb.CountScore() + goldfishCount;
-                        score.setText("Score: " + addedScore);   
+                        score.setText("Score: " + addedScore);
                         break;
-                    } else {
-                        panel.remove(newGoldfishLabel);
-                        panel.revalidate();
-                        panel.repaint();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            if (newGoldfishLabel.getX() < -50) {
+                panel.remove(newGoldfishLabel);
+                panel.revalidate();
+                panel.repaint();
+            }
         });
         moveSingleGoldfishThread.start();
-	}
+    }
 
-	private void gameOver() {
+    private void gameOver() {
         JOptionPane.showMessageDialog(frame, "Game Over");
         System.exit(0);
     }

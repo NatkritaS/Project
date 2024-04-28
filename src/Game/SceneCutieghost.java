@@ -45,8 +45,7 @@ public class SceneCutieghost {
         score = new JLabel("Score:" );
         Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
         score.setFont(font);
-        score.setBounds(550, 10, 100, 20);
-        score.setForeground(Color.WHITE);
+        score.setBounds(600, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
 
@@ -65,26 +64,25 @@ public class SceneCutieghost {
             b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
 
-       
+        int TopFireY = 0; 
+        int LandFireY = panel.getHeight() - 305; 
 
-
-        int totalFireCount = random.nextInt(1000 - 2 + 1) + 2;
-        for (int i = 0; i < totalFireCount; i++) {
+        int topFireCount = random.nextInt(1000)+2;
+        for (int i = 0; i < topFireCount; i++) {
             JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/top.png"));
-            JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
-            
-            int LandbubbleY = random.nextInt(401) + 300;
-            int TopbubbleX = LandbubbleY - 700; 
-            
-            FireLabelTop.setBounds(700 + i * 350, TopbubbleX, 50, 450);
-            FireLabelLand.setBounds(700 + i * 350, LandbubbleY, 70, 450);
-          
+            int ranposTop = random.nextInt(351);
+            FireLabelTop.setBounds(200 + i * 350, TopFireY, 100, ranposTop); 
             FireLabels.add(FireLabelTop);
             panel.add(FireLabelTop);
-            
+        }
+
+        int landFireCount = random.nextInt(1000) +2;
+        for (int i = 0; i < landFireCount; i++) {
+            JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
+            int ranposLand = 500+random.nextInt(101);
+            FireLabelLand.setBounds(140 + i * 350, LandFireY, 100, ranposLand); 
             FireLabels.add(FireLabelLand);
             panel.add(FireLabelLand);
-       
         }
 
         Positionx -= 2;
@@ -105,7 +103,7 @@ public class SceneCutieghost {
         Thread moveFireThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(100);
                     moveFire();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -156,13 +154,11 @@ public class SceneCutieghost {
                 frame.repaint();
                 sb.ResetScore();
                 character = new Character_page(frame);
-                FireMoving = false;
             }
         });
     }
-    private boolean FireMoving = true;
+
     private void moveFire() {
-    	if (!FireMoving) return;
         boolean CutieghostPassedFire = false;
         int lastFireX = 0;
 
@@ -199,7 +195,6 @@ public class SceneCutieghost {
 
     private void moveGoldapple() {
         Thread moveGoldappleThread = new Thread(() -> {
-        	
         	while (true) {
                 try {
                     Thread.sleep(20);

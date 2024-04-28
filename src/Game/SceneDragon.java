@@ -24,7 +24,6 @@ public class SceneDragon {
     private ArrayList<JLabel> heartLabels;
     private int heartcount;
     
- 
     protected static int Positiony = 350;
     protected static int Positionx = 400;
      
@@ -50,18 +49,15 @@ public class SceneDragon {
             score.setBounds(580, 10, 100, 20);
             panel.add(score);
             frame.add(panel);
-     
             frame.setVisible(true);
             sb = new Scoreboard();
             panel.requestFocus();
-            
             background = new ImageIcon("src/images/background_sunny.png");
-     
             WoodLabels = new ArrayList<>();
             random = new Random();
             Random rand = new Random();
+            
             int totalWoodCount = rand.nextInt(1000 - 2 + 1) + 2;
-     
             for (int i = 0; i < totalWoodCount; i++) {
                 JLabel WoodLabelTop = new JLabel(new ImageIcon("src/images/WoodTop.png"));
                 JLabel WoodLabelLand = new JLabel(new ImageIcon("src/images/WoodLand.png"));
@@ -79,7 +75,6 @@ public class SceneDragon {
                 panel.add(WoodLabelLand);
             }
      
-     
             Positionx = -50;
             fireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));
             fireballLabel.setBounds(Positionx, Positiony, 50, 50);
@@ -92,8 +87,8 @@ public class SceneDragon {
             panel.add(dragonLabel);
             frame.add(panel);
             frame.setVisible(true);
-     
             panel.requestFocus();
+            
             // AI แก้ไข
             Thread moveWoodThread = new Thread(() -> {
                 while (true) {
@@ -111,8 +106,6 @@ public class SceneDragon {
                 public void keyPressed(KeyEvent e) {
                     int key = e.getKeyCode();
                     int key1 = panel.getHeight() - dragon.getDragonHeight();
-                    
-     
                     if (key == KeyEvent.VK_UP) {
                         if (Positiony - Dragon.GRAVITY >= 0) {
                             Positiony -= Dragon.GRAVITY;
@@ -124,9 +117,6 @@ public class SceneDragon {
                         }
                         Dragon.flyDown();
                     }
-                    	
-                  
-            
                     dragonLabel.setBounds(dragon.getxPosition(), Positiony, 130, dragon.getDragonHeight());
                     panel.revalidate();
                     panel.repaint();
@@ -147,7 +137,6 @@ public class SceneDragon {
                 public void actionPerformed(ActionEvent e) {
                     frame.getContentPane().removeAll();
                     frame.repaint();
-                    
                     sb.ResetScore();
                     character = new Character_page(frame);
                     woodMoving = false;
