@@ -18,8 +18,12 @@ public class SceneChubby {
     private Chubby chubby;
     private JLabel score;
     private Scoreboard sb;
+    private Lobby lobby;
     private JLabel goldfishLabel;
     private int goldfishCount = 0;
+    private ArrayList<JLabel> heartLabels;
+    private int heartcount;
+    
     protected static int Positiony = 350;
     protected static int Positionx = 400;
 
@@ -134,11 +138,24 @@ public class SceneChubby {
                 frame.repaint();
                 sb.ResetScore();
                 character = new Character_page(frame);
+                BubbleMoving = false;
             }
         });
+        
+        heartLabels = new ArrayList<>();
+        heartcount = 3;
+        for (int i = 0; i < heartcount; i++) {
+            JLabel heartLabel = new JLabel(new ImageIcon("src/images/Heart.png"));
+            heartLabel.setBounds(2 + i * 30, 20, 40, 50);
+            panel.add(heartLabel);
+            heartLabels.add(heartLabel);
+        }
     }
 
+    private boolean BubbleMoving = true;
+
     private void moveBubble() {
+    	if (!BubbleMoving) return;
         boolean chubbyPassedBubble = false;
         int lastBubbleX = 0;
 
@@ -165,13 +182,35 @@ public class SceneChubby {
         for (JLabel bubbleLabel : bubbleLabels) {
             Rectangle bubbleBounds = bubbleLabel.getBounds();
             if (chubbyBounds.intersects(bubbleBounds)) {
-                gameOver();
-                return;
+                //ชนกับฟองสบู่
+            	if (heartcount > 0 && chubby.getInvincibleCount() == 0) {
+            	    panel.remove(heartLabels.get(heartcount - 1)); // ลบหัวใจ
+            	    panel.revalidate();
+            	    panel.repaint();
+            	    heartcount--;
+            	    updateHeartPositions();
+            	    
+            	    chubby.setInvincibleCount(2); // ทำให้มังกรเป็นอมตะเป็นเวลา 2 วินาที
+            	    Timer invincibleTimer = new Timer(2000, new ActionListener() {
+            	        @Override
+            	        public void actionPerformed(ActionEvent e) {
+            	        	chubby.setInvincibleCount(0); // ทำให้มังกรไม่อมตะหลังจากเวลาผ่านไป
+            	        }
+            	    });
+            	    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
+            	    invincibleTimer.start(); // เริ่มต้นการนับเวลา
+            	} 
+            	if (heartcount == 0) {
+            	    gameOver(); 
+            	    //ลองเอาเงื่อนไขตรงนี้ออกนะ
+            	}
+            	
+            	
             }
         }
     }
-
-    private void moveGoldfish() {
+    
+	private void moveGoldfish() {
         Thread moveGoldfishThread = new Thread(() -> {
             while (true) {
                 try {
@@ -199,21 +238,19 @@ public class SceneChubby {
             int yVelocity = 0;
             while (newGoldfishLabel.getX() > -50) {
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(30);
                     int newX = newGoldfishLabel.getX() + xVelocity;
                     int newY = newGoldfishLabel.getY() + yVelocity;
                     newGoldfishLabel.setLocation(newX, newY);
-                    
-                    // Check for collision with chubby
+                    //เช็คการชนกับนกอ้วน
                     Rectangle chubbyBounds = chubbyLabel.getBounds();
                     Rectangle goldfishBounds = newGoldfishLabel.getBounds();
                     if (chubbyBounds.intersects(goldfishBounds)) {
                         panel.remove(newGoldfishLabel);
                         panel.revalidate();
                         panel.repaint();
-                        // Increase score and update score label
-                        goldfishCount++;
-                        int addedScore = goldfishCount;
+                        sb.getScore();
+                        int addedScore = sb.CountScore() + sb.Eat();
                         score.setText("Score: " + addedScore);
                         break;
                     }
@@ -229,9 +266,58 @@ public class SceneChubby {
         });
         moveSingleGoldfishThread.start();
     }
+    
+	private void updateHeartPositions() {
+		for (int i = 0; i < heartcount; i++) {
+            JLabel heartLabel = heartLabels.get(i);
+            heartLabel.setBounds(2 + i * 30, 20, 40, 50);
+        }
+    }			
 
     private void gameOver() {
-        JOptionPane.showMessageDialog(frame, "Game Over");
-        System.exit(0);
+    	frame.getContentPane().removeAll();
+        frame.repaint();
+        sb.ResetScore();
+        BubbleMoving = false;
+        frame.setSize(700, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
+        JLabel screen = new JLabel();
+        screen.setIcon(BG_Scoreboard);
+        screen.setBounds(0, 0, 700, 800);
+        panel.add(screen);
+        
+        // คำนวณและเก็บคะแนนสะสม
+        int totalScore = sb.CountScore();
+        
+        // สร้าง JLabel เพื่อแสดงคะแนนสะสม
+        JLabel scoreLabel = new JLabel("Score: " + totalScore );
+        scoreLabel.setBounds(300, 200, 100, 20);
+        panel.add(scoreLabel);
+        
+        ImageIcon back = new ImageIcon("src\\images\\back_button.png");
+        button_back = new JButton();
+        button_back.setIcon(back);
+        button_back.setBorderPainted(false);
+        button_back.setContentAreaFilled(false);
+        button_back.setFocusPainted(false);
+        button_back.setOpaque(false);
+        button_back.setBounds(0, 5, 95, 20);
+        panel.add(button_back);
+        frame.getContentPane().add(panel);
+        frame.setVisible(true); 
+        
+        button_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().removeAll();
+                frame.repaint();
+                sb.ResetScore();
+                character = new Character_page(frame);
+                BubbleMoving = false;
+            }
+        });
     }
 }
