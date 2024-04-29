@@ -250,7 +250,7 @@ public class SceneDragon {
                         panel.revalidate();
                         panel.repaint();
                         sb.getScore();
-                        addedScore += sb.CountScore() ;
+                        addedScore = sb.CountScore() ;
                         break;
                     }
                 } catch (InterruptedException e) {
