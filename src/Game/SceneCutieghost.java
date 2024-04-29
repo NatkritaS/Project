@@ -43,10 +43,8 @@ public class SceneCutieghost {
         };
         panel.setLayout(null);
         score = new JLabel("Score:" );
-        Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
-        score.setFont(font);
-        score.setBounds(600, 10, 100, 20);
-        score.setForeground(Color.WHITE);
+        score.setFont(new Font("src/font/superpixel.ttf", Font.BOLD, 18));
+        score.setBounds(580, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
         frame.setVisible(true);
@@ -57,7 +55,7 @@ public class SceneCutieghost {
         random = new Random();
         Random random = new Random();
         
-        int topFireCount = random.nextInt(1000)+2;
+        int topFireCount = random.nextInt(1000- 2 + 1) + 2;
         for (int i = 0; i < topFireCount; i++) {
             JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/top.png"));
             JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
@@ -66,7 +64,7 @@ public class SceneCutieghost {
             int TopFireX = LandFireY - 700;
             
             FireLabelTop.setBounds(700 + i * 300, TopFireX, 70, 400);
-            FireLabelLand.setBounds(700 + i * 300, LandFireY, 70, 385);
+            FireLabelLand.setBounds(700 + i * 300, LandFireY, 70, 400);
             
             FireLabels.add(FireLabelTop);
             panel.add(FireLabelTop);
@@ -243,9 +241,9 @@ public class SceneCutieghost {
                         int newY = newGoldappleLabel.getY() + yVelocity;
                         newGoldappleLabel.setLocation(newX, newY); 
                         // เช็คการชนกับผี
-                        Rectangle appleBounds = cutieghostLabel.getBounds();
+                        Rectangle ghostBounds = cutieghostLabel.getBounds();
                         Rectangle goldappleBounds = newGoldappleLabel.getBounds();
-                        if (appleBounds.intersects(goldappleBounds)) {
+                        if (ghostBounds.intersects(goldappleBounds)) {
                             panel.remove(newGoldappleLabel);
                             panel.revalidate();
                             panel.repaint();
