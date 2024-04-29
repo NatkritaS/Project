@@ -61,7 +61,7 @@ public class Lobby {
         button_exit.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button_exit.setFocusPainted(false);
         button_exit.setOpaque(false);
-        button_exit.setBounds(250, 440, 200, 50);
+        button_exit.setBounds(250, 435, 200, 50);
         panel.add(button_exit);
 
         screen = new JLabel();
