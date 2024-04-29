@@ -11,7 +11,6 @@ public class Lobby {
     private JPanel panel;
     private JButton button1;
     private JButton button_howto;
-    private JButton button_score;
     private JButton button_exit;
     private  Character_page characterPage;
 	protected Howtoplay Howtoplay;
@@ -20,7 +19,6 @@ public class Lobby {
         ImageIcon background = new ImageIcon("src\\images\\background_lobby.png");
         ImageIcon start1 = new ImageIcon("src\\images\\play_button.png");
         ImageIcon how = new ImageIcon("src\\images\\how_button.png");
-        ImageIcon score = new ImageIcon("src\\images\\score_button.png");
         ImageIcon exit = new ImageIcon("src\\images\\exit_button.png");
         frame = f;
         frame.setTitle("AnimalAdventure");
@@ -55,15 +53,6 @@ public class Lobby {
         button_howto.setBounds(250, 380, 200, 50);
         panel.add(button_howto);
 
-        button_score = new JButton();
-        button_score.setIcon(score);
-        button_score.setContentAreaFilled(false);
-        button_score.setBorderPainted(false); // ทำให้กรอบปุ่มหายไป
-        button_score.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
-        button_score.setFocusPainted(false);
-        button_score.setOpaque(false);
-        button_score.setBounds(250, 440, 200, 50);
-        panel.add(button_score);
 
         button_exit = new JButton();
         button_exit.setIcon(exit);
@@ -72,7 +61,7 @@ public class Lobby {
         button_exit.setContentAreaFilled(false); // ทำให้พื้นหลังตรงขอบๆปุ่มหาย
         button_exit.setFocusPainted(false);
         button_exit.setOpaque(false);
-        button_exit.setBounds(250, 500, 200, 50);
+        button_exit.setBounds(250, 435, 200, 50);
         panel.add(button_exit);
 
         screen = new JLabel();
