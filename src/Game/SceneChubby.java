@@ -202,7 +202,6 @@ public class SceneChubby {
             	} 
             	if (heartcount == 0) {
             	    gameOver(); 
-            	    //ลองเอาเงื่อนไขตรงนี้ออกนะ
             	}
             	
             	
