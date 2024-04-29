@@ -199,10 +199,11 @@ public class SceneDragon {
             	    });
             	    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
             	    invincibleTimer.start(); // เริ่มต้นการนับเวลา
-            	} /*else if (heartcount == 0 || dragon.getInvincibleCount() > 0) {
+            	} 
+            	if (heartcount == 0) {
             	    gameOver(); 
             	    //ลองเอาเงื่อนไขตรงนี้ออกนะ
-            	}*/
+            	}
        
 
             }
@@ -273,12 +274,11 @@ public class SceneDragon {
         }
     }
 
-    private void gameOver(JFrame jf) {
-    	frame.getContentPane().removeAll();
+    private void gameOver() {
+        frame.getContentPane().removeAll();
         frame.repaint();
         sb.ResetScore();
         woodMoving = false;
-        frame = jf;
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -290,7 +290,14 @@ public class SceneDragon {
         screen.setBounds(0, 0, 700, 800);
         panel.add(screen);
         
-       
+        // คำนวณและเก็บคะแนนสะสม
+        int totalScore = sb.CountScore();
+        
+        // สร้าง JLabel เพื่อแสดงคะแนนสะสม
+        JLabel scoreLabel = new JLabel("Score: " + totalScore );
+        scoreLabel.setBounds(300, 200, 100, 20);
+        panel.add(scoreLabel);
+        
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
@@ -300,10 +307,9 @@ public class SceneDragon {
         button_back.setOpaque(false);
         button_back.setBounds(0, 5, 95, 20);
         panel.add(button_back);
-        frame.add(panel);
+        frame.getContentPane().add(panel);
         frame.setVisible(true); 
         
-
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
@@ -313,6 +319,7 @@ public class SceneDragon {
                 woodMoving = false;
             }
         });
-        
     }
+
+
 }
