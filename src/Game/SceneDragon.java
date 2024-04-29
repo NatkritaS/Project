@@ -295,7 +295,7 @@ public class SceneDragon {
         JLabel scoreMessage = new JLabel("Your final score is: " + totalScore);
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
         scoreMessage.setForeground(Color.BLACK);
-        scoreMessage.setBounds(250, 200, 500, 30);
+        scoreMessage.setBounds(250, 200, 500, 400);
         panel.add(scoreMessage);
 
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
