@@ -189,7 +189,7 @@ public class SceneDragon {
             	    panel.repaint();
             	    heartcount--;
             	    updateHeartPositions();
-
+            	    
             	    dragon.setInvincibleCount(2); // ทำให้มังกรเป็นอมตะเป็นเวลา 2 วินาที
             	    Timer invincibleTimer = new Timer(2000, new ActionListener() {
             	        @Override
@@ -203,7 +203,8 @@ public class SceneDragon {
             	    gameOver(); 
             	    //ลองเอาเงื่อนไขตรงนี้ออกนะ
             	}*/
-            	
+       
+
             }
         }
     }
@@ -272,12 +273,12 @@ public class SceneDragon {
         }
     }
 
-    private void gameOver() {
+    private void gameOver(JFrame jf) {
     	frame.getContentPane().removeAll();
         frame.repaint();
         sb.ResetScore();
         woodMoving = false;
-        frame = new JFrame();
+        frame = jf;
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -293,7 +294,7 @@ public class SceneDragon {
         panel.add(screen);
 
         frame.add(panel);
-        frame.setVisible(true); // แก้จาก false เป็น true เพื่อให้แสดงหน้าต่าง
+        frame.setVisible(true); 
         
     }
 }
