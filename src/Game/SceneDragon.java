@@ -23,6 +23,7 @@ public class SceneDragon {
     private int fireballCount = 0;
     private ArrayList<JLabel> heartLabels;
     private int heartcount;
+    private int addedScore = 0;
 
     protected static int Positiony = 350;
     protected static int Positionx = 400;
@@ -249,8 +250,7 @@ public class SceneDragon {
                         panel.revalidate();
                         panel.repaint();
                         sb.getScore();
-                        int addedScore = sb.CountScore() + sb.Eat();
-                        score.setText("Score: " + addedScore);
+                        addedScore = sb.CountScore() ;
                         break;
                     }
                 } catch (InterruptedException e) {
@@ -284,14 +284,20 @@ public class SceneDragon {
         frame.setResizable(false);
         JPanel panel = new JPanel();
         panel.setLayout(null);
-
-        int totalScore = sb.CountScore();
-
-        JLabel scoreLabel = new JLabel(Integer.toString(totalScore));
-        scoreLabel.setBounds(400, 170, 100, 20);
-        panel.add(scoreLabel);
-
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        sb.ResetScore();
+        woodMoving = false;
+        panel.setLayout(new BorderLayout());
+        frame.setSize(700, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
       
+        panel.setLayout(null);
+        
+        
+        int totalScore = sb.CountScore() + addedScore;
+
         JLabel scoreMessage = new JLabel("Your final score is: " + totalScore);
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
         scoreMessage.setForeground(Color.BLACK);
