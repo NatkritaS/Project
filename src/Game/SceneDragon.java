@@ -43,7 +43,7 @@ public class SceneDragon {
         };
 
         panel.setLayout(null);
-        score = new JLabel("คะแนน:");
+        score = new JLabel("Score:");
         Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
         score.setFont(font);
         score.setBounds(580, 10, 100, 20);
@@ -272,19 +272,35 @@ public class SceneDragon {
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-
         JPanel panel = new JPanel();
         panel.setLayout(null);
-
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
-
         JLabel screen = new JLabel();
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
         panel.add(screen);
-
         frame.add(panel);
         frame.setVisible(true); 
+        panel.add(button_back);
+        ImageIcon back = new ImageIcon("src\\images\\back_button.png");
+        button_back = new JButton();
+        button_back.setIcon(back);
+        button_back.setBorderPainted(false);
+        button_back.setContentAreaFilled(false);
+        button_back.setFocusPainted(false);
+        button_back.setOpaque(false);
+        button_back.setBounds(0, 5, 95, 20);
+        
+
+        button_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().removeAll();
+                frame.repaint();
+                sb.ResetScore();
+                character = new Character_page(frame);
+                woodMoving = false;
+            }
+        });
         
     }
 }
