@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SceneCutieghost {
-    private static final Dragon cutieghost = null;
 	private ImageIcon background;
     private JLabel cutieghostLabel;
     private ArrayList<JLabel> FireLabels;
@@ -156,6 +155,7 @@ public class SceneCutieghost {
     private boolean fireMoving = true;
     
     private void moveFire() {
+    	if (!fireMoving) return;
         boolean CutieghostPassedFire = false;
         int lastFireX = 0;
         
@@ -183,18 +183,18 @@ public class SceneCutieghost {
             Rectangle fireBounds = FireLabel.getBounds();
             if (cutieghostBounds.intersects(fireBounds)) {
             	// ชนกับไฟ
-            	if (heartcount > 0 && cutieghost.getInvincibleCount() == 0) {
+            	if (heartcount > 0 && cutie.getInvincibleCount() == 0) {
             	    panel.remove(heartLabels.get(heartcount - 1)); // ลบหัวใจ
             	    panel.revalidate();
             	    panel.repaint();
             	    heartcount--;
             	    updateHeartPositions();
             	    
-            	    cutieghost.setInvincibleCount(2); // ทำให้ผีเป็นอมตะเป็นเวลา 2 วินาที
+            	    cutie.setInvincibleCount(2); // ทำให้ผีเป็นอมตะเป็นเวลา 2 วินาที
             	    Timer invincibleTimer = new Timer(2000, new ActionListener() {
             	        @Override
             	        public void actionPerformed(ActionEvent e) {
-            	        	cutieghost.setInvincibleCount(0); // ทำให้ผีไม่อมตะหลังจากเวลาผ่านไป
+            	        	cutie.setInvincibleCount(0); // ทำให้ผีไม่อมตะหลังจากเวลาผ่านไป
             	        }
             	    });
             	    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
@@ -209,8 +209,6 @@ public class SceneCutieghost {
             }
         }
     }
-    
-	private boolean isGameOver = false;
 	
     private void moveGoldapple() {
     	Thread moveFireballThread = new Thread(() -> {
@@ -240,7 +238,7 @@ public class SceneCutieghost {
                  int yVelocity = 0; 
                 while (newGoldappleLabel.getX() > -50) {
                     try {
-                        Thread.sleep(20);
+                        Thread.sleep(30);
                         int newX = newGoldappleLabel.getX() + xVelocity;
                         int newY = newGoldappleLabel.getY() + yVelocity;
                         newGoldappleLabel.setLocation(newX, newY); 
