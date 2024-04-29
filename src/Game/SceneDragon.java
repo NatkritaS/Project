@@ -183,18 +183,28 @@ public class SceneDragon {
             Rectangle woodBounds = WoodLabel.getBounds();
             if (dragonBounds.intersects(woodBounds)) {
                 // ชนกับไม้
-                if (heartcount > 0 && !dragon.isInvincible()) {
-                    panel.remove(heartLabels.get(heartcount - 1)); // ลบหัวใจ
-                    panel.revalidate();
-                    panel.repaint();
-                    heartcount--;
-                    updateHeartPositions();
+            	if (heartcount > 0 && dragon.getInvincibleCount() == 0) {
+            	    panel.remove(heartLabels.get(heartcount - 1)); // ลบหัวใจ
+            	    panel.revalidate();
+            	    panel.repaint();
+            	    heartcount--;
+            	    updateHeartPositions();
+            	    
+            	    dragon.setInvincibleCount(2); // ทำให้มังกรเป็นอมตะเป็นเวลา 2 วินาที
+            	    Timer invincibleTimer = new Timer(2000, new ActionListener() {
+            	        @Override
+            	        public void actionPerformed(ActionEvent e) {
+            	            dragon.setInvincibleCount(0); // ทำให้มังกรไม่อมตะหลังจากเวลาผ่านไป
+            	        }
+            	    });
+            	    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
+            	    invincibleTimer.start(); // เริ่มต้นการนับเวลา
+            	} /*else if (heartcount == 0 || dragon.getInvincibleCount() > 0) {
+            	    gameOver(); 
+            	    //ลองเอาเงื่อนไขตรงนี้ออกนะ
+            	}*/
+       
 
-                   
-                } else {
-                    gameOver(frame); // ถ้าหมดหัวใจ ให้เริ่มเกมใหม่
-                }
-                return; // ออกจากลูปหลังจากลบหัวใจเพียงครั้งเดียว
             }
         }
     }

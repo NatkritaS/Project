@@ -62,12 +62,10 @@ public class Dragon {
         this.invincible = invincible;
     }
     
-    // เมธอด getter สำหรับจำนวนครั้งที่มังกรเป็นอมตะ
     public int getInvincibleCount() {
         return invincibleCount;
     }
 
-    // เมธอด setter สำหรับตั้งค่าจำนวนครั้งที่มังกรเป็นอมตะ
     public void setInvincibleCount(int count) {
         this.invincibleCount = count;
     }
