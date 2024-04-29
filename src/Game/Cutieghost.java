@@ -6,15 +6,16 @@ import javax.swing.ImageIcon;
 public class Cutieghost extends Dragon {
 	    public static int xPosition;
 	    public static int yPosition;
-	    private int width = 700;
-	    private int height = 800;
 	    private ImageIcon cutieimage;
-	    public static int GRAVITY = 10;
+	    public static int GRAVITY = 20;
+	    private boolean invincible;
+	    private int invincibleCount;
  
 	    public Cutieghost() {
 	        this.xPosition = 100;
 	        this.yPosition = 350;
 	        this.cutieimage = new ImageIcon("src/images/CutieGhost.png");
+	        this.invincible = false;
 	    }
  
 	    public void moveTo(int x, int y) {
@@ -31,8 +32,8 @@ public class Cutieghost extends Dragon {
 	    }
  
 	    public static Icon getCutieghostImage() {
-	    	ImageIcon image = new ImageIcon("src/images/CutieGhost.png");
-			return image;
+	    	ImageIcon cutieimage = new ImageIcon("src/images/CutieGhost.png");
+			return cutieimage;
 	        
 	    }
 	    public static int flyUp() {
@@ -52,5 +53,20 @@ public class Cutieghost extends Dragon {
 	            return 0;
 			}
 	    	
+	    }
+	    public boolean isInvincible() {
+	        return invincible;
+	    }
+
+	    public void setInvincible(boolean invincible) {
+	        this.invincible = invincible;
+	    }
+	    
+	    public int getInvincibleCount() {
+	        return invincibleCount;
+	    }
+
+	    public void setInvincibleCount(int count) {
+	        this.invincibleCount = count;
 	    }
 	}
