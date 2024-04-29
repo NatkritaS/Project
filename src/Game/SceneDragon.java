@@ -190,15 +190,7 @@ public class SceneDragon {
                     heartcount--;
                     updateHeartPositions();
 
-                    dragon.setInvincible(true); // ทำให้มังกรเป็นอมตะ
-                    Timer invincibleTimer = new Timer(5000, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            dragon.setInvincible(false); // ทำให้มังกรไม่อมตะหลังจากเวลาผ่านไป
-                        }
-                    });
-                    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
-                    invincibleTimer.start(); // เริ่มต้นการนับเวลา
+                   
                 } else {
                     gameOver(); // ถ้าหมดหัวใจ ให้เริ่มเกมใหม่
                 }
@@ -248,7 +240,7 @@ public class SceneDragon {
                         panel.repaint();
                         sb.getScore();
                         int addedScore = sb.CountScore() + sb.Eat();
-                        score.setText("คะแนน: " + addedScore);
+                        score.setText("Score: " + addedScore);
                         break;
                     }
                 } catch (InterruptedException e) {
@@ -272,10 +264,27 @@ public class SceneDragon {
     }
 
     private void gameOver() {
-        JOptionPane.showMessageDialog(frame, "GameOver! Score: " + sb.CountScore(), "เกมสิ้นสุด", JOptionPane.INFORMATION_MESSAGE);
-        frame.getContentPane().removeAll();
+    	frame.getContentPane().removeAll();
         frame.repaint();
-        character = new Character_page(frame);
+        sb.ResetScore();
         woodMoving = false;
+        frame = new JFrame();
+        frame.setSize(700, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+
+        ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
+
+        JLabel screen = new JLabel();
+        screen.setIcon(BG_Scoreboard);
+        screen.setBounds(0, 0, 700, 800);
+        panel.add(screen);
+
+        frame.add(panel);
+        frame.setVisible(true); // แก้จาก false เป็น true เพื่อให้แสดงหน้าต่าง
+        
     }
 }
