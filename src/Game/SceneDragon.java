@@ -44,8 +44,7 @@ public class SceneDragon {
 
         panel.setLayout(null);
         score = new JLabel("Score:");
-        Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
-        score.setFont(font);
+        score.setFont(new Font("src/font/superpixel.ttf", Font.BOLD, 18));
         score.setBounds(580, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
@@ -275,29 +274,36 @@ public class SceneDragon {
     }
 
     private void gameOver() {
-        frame.getContentPane().removeAll();
+    	frame.getContentPane().removeAll();
         frame.repaint();
         sb.ResetScore();
         woodMoving = false;
+        panel.setLayout(new BorderLayout());
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         JPanel panel = new JPanel();
         panel.setLayout(null);
+
+        int totalScore = sb.CountScore();
+
+        JLabel scoreLabel = new JLabel(Integer.toString(totalScore));
+        scoreLabel.setBounds(400, 170, 100, 20);
+        panel.add(scoreLabel);
+
+      
+        JLabel scoreMessage = new JLabel("Your final score is: " + totalScore);
+        scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
+        scoreMessage.setForeground(Color.BLACK);
+        scoreMessage.setBounds(250, 200, 500, 30);
+        panel.add(scoreMessage);
+
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
         JLabel screen = new JLabel();
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
-        panel.add(screen);
-        
-        // คำนวณและเก็บคะแนนสะสม
-        int totalScore = sb.CountScore();
-        
-        // สร้าง JLabel เพื่อแสดงคะแนนสะสม
-        JLabel scoreLabel = new JLabel("Score: " + totalScore );
-        scoreLabel.setBounds(300, 200, 100, 20);
-        panel.add(scoreLabel);
-        
+        panel.add(screen, BorderLayout.CENTER);
+
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
@@ -309,6 +315,8 @@ public class SceneDragon {
         panel.add(button_back);
         frame.getContentPane().add(panel);
         frame.setVisible(true); 
+        panel.requestFocus();
+        
         
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
