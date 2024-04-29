@@ -199,12 +199,10 @@ public class SceneDragon {
             	    });
             	    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
             	    invincibleTimer.start(); // เริ่มต้นการนับเวลา
-            	} /*else if (heartcount == 0 || dragon.getInvincibleCount() > 0) {
-            	    gameOver(); 
-            	    //ลองเอาเงื่อนไขตรงนี้ออกนะ
-            	}*/
-       
-
+            	} 
+            	else if (heartcount == 0) {
+            		gameOver(frame);
+            	}  
             }
         }
     }
