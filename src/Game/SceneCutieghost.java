@@ -46,6 +46,7 @@ public class SceneCutieghost {
         Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
         score.setFont(font);
         score.setBounds(600, 10, 100, 20);
+        score.setForeground(Color.WHITE);
         panel.add(score);
         frame.add(panel);
 
@@ -64,23 +65,23 @@ public class SceneCutieghost {
             b = random.nextInt(panel.getWidth() - 200-305) + a + 500;
         } while (Math.abs(a - b) < 500);
 
-        int TopFireY = 0; 
-        int LandFireY = panel.getHeight() - 305; 
+       
 
         int topFireCount = random.nextInt(1000)+2;
         for (int i = 0; i < topFireCount; i++) {
             JLabel FireLabelTop = new JLabel(new ImageIcon("src/images/top.png"));
-            int ranposTop = random.nextInt(351);
-            FireLabelTop.setBounds(200 + i * 350, TopFireY, 100, ranposTop); 
+            JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
+            
+            int LandFireY = random.nextInt(301) + 350;
+            int TopFireX = LandFireY - 700;
+            
+            FireLabelTop.setBounds(700 + i * 300, TopFireX, 70, 400);
+            FireLabelLand.setBounds(700 + i * 300, LandFireY, 70, 385);
+            
+            
             FireLabels.add(FireLabelTop);
             panel.add(FireLabelTop);
-        }
-
-        int landFireCount = random.nextInt(1000) +2;
-        for (int i = 0; i < landFireCount; i++) {
-            JLabel FireLabelLand = new JLabel(new ImageIcon("src/images/FireLand.png"));
-            int ranposLand = 500+random.nextInt(101);
-            FireLabelLand.setBounds(140 + i * 350, LandFireY, 100, ranposLand); 
+ 
             FireLabels.add(FireLabelLand);
             panel.add(FireLabelLand);
         }
@@ -103,7 +104,7 @@ public class SceneCutieghost {
         Thread moveFireThread = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(20);
                     moveFire();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -161,6 +162,7 @@ public class SceneCutieghost {
     private void moveFire() {
         boolean CutieghostPassedFire = false;
         int lastFireX = 0;
+        
 
         for (JLabel FireLabel : FireLabels) {
             int x = FireLabel.getX();
