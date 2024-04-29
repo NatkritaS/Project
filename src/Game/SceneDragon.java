@@ -287,9 +287,8 @@ public class SceneDragon {
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
         panel.add(screen);
-        frame.add(panel);
-        frame.setVisible(true); 
-        panel.add(button_back);
+        
+       
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
@@ -298,6 +297,9 @@ public class SceneDragon {
         button_back.setFocusPainted(false);
         button_back.setOpaque(false);
         button_back.setBounds(0, 5, 95, 20);
+        panel.add(button_back);
+        frame.add(panel);
+        frame.setVisible(true); 
         
 
         button_back.addActionListener(new ActionListener() {
