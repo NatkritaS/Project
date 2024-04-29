@@ -136,7 +136,7 @@ public class SceneDragon {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                sb.ResetScore();
+                sb.getScore();
                 character = new Character_page(frame);
                 woodMoving = false;
             }
@@ -171,11 +171,6 @@ public class SceneDragon {
                 dragonPassedWood = true;
                 lastWoodX = x;
             }
-        }
-
-        if (dragonPassedWood) {
-            int addedScore = sb.CountScore();
-            score.setText("Score: " + addedScore);
         }
 
         Rectangle dragonBounds = dragonLabel.getBounds();
@@ -249,8 +244,9 @@ public class SceneDragon {
                         panel.remove(newFireballLabel);
                         panel.revalidate();
                         panel.repaint();
-                        sb.getScore();
-                        addedScore = sb.CountScore() ;
+                        int addedScore = sb.CountScore(); // เพิ่มคะแนน
+                        score.setText("Score: " + addedScore); // แสดงคะแนนที่มีใหม่
+
                         break;
                     }
                 } catch (InterruptedException e) {
@@ -274,9 +270,9 @@ public class SceneDragon {
     }
 
     private void gameOver() {
-    	frame.getContentPane().removeAll();
+        frame.getContentPane().removeAll();
         frame.repaint();
-        sb.ResetScore();
+        sb.resetScore(); // เรียกใช้เมทอด resetScore() เพื่อรีเซ็ตคะแนนทุกครั้งที่เกมเสร็จสิ้น
         woodMoving = false;
         panel.setLayout(new BorderLayout());
         frame.setSize(700, 800);
@@ -286,19 +282,17 @@ public class SceneDragon {
         panel.setLayout(null);
         frame.getContentPane().removeAll();
         frame.repaint();
-        sb.ResetScore();
+        sb.resetScore();
         woodMoving = false;
         panel.setLayout(new BorderLayout());
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-      
-        panel.setLayout(null);
-        
-        
-        int totalScore = sb.CountScore() + addedScore;
 
-        JLabel scoreMessage = new JLabel("Your final score is: " + totalScore);
+        panel.setLayout(null);
+
+        int addedScore = sb.CountScore();
+        JLabel scoreMessage = new JLabel("Your final score is: " + sb.CountScore());
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
         scoreMessage.setForeground(Color.BLACK);
         scoreMessage.setBounds(250, 200, 500, 400);
@@ -320,17 +314,17 @@ public class SceneDragon {
         button_back.setBounds(0, 5, 95, 20);
         panel.add(button_back);
         frame.getContentPane().add(panel);
-        frame.setVisible(true); 
+        frame.setVisible(true);
         panel.requestFocus();
-        
-        
+
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                sb.ResetScore();
+                
                 character = new Character_page(frame);
                 woodMoving = false;
+                sb.resetScore();
             }
         });
     }

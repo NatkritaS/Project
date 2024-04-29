@@ -136,7 +136,7 @@ public class SceneCutieghost {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                sb.ResetScore();
+                sb.getScore();
                 character = new Character_page(frame);
                 fireMoving = false;
             }
@@ -250,8 +250,8 @@ public class SceneCutieghost {
                             panel.revalidate();
                             panel.repaint();
                             sb.getScore();
-                            int addedScore = sb.CountScore() + sb.Eat();
-                            score.setText("Score: " + addedScore);
+                            int addedScore = sb.CountScore(); // เพิ่มคะแนน
+                            score.setText("Score: " + addedScore); // แสดงคะแนนที่มีใหม่
                             break;
                         } 
                     } catch (InterruptedException e) {
@@ -277,27 +277,38 @@ public class SceneCutieghost {
     private void gameOver() {
     	frame.getContentPane().removeAll();
         frame.repaint();
-        sb.ResetScore();
+        sb.resetScore(); // เรียกใช้เมทอด resetScore() เพื่อรีเซ็ตคะแนนทุกครั้งที่เกมเสร็จสิ้น
         fireMoving = false;
+        panel.setLayout(new BorderLayout());
         frame.setSize(700, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         JPanel panel = new JPanel();
         panel.setLayout(null);
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        sb.resetScore();
+        fireMoving = false;
+        panel.setLayout(new BorderLayout());
+        frame.setSize(700, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
+        panel.setLayout(null);
+
+        int addedScore = sb.CountScore();
+        JLabel scoreMessage = new JLabel("Your final score is: " + sb.CountScore());
+        scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
+        scoreMessage.setForeground(Color.BLACK);
+        scoreMessage.setBounds(250, 200, 500, 400);
+        panel.add(scoreMessage);
+
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
         JLabel screen = new JLabel();
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
-        panel.add(screen);
-        
-        // คำนวณและเก็บคะแนนสะสม
-        int totalScore = sb.CountScore();
-        
-        // สร้าง JLabel เพื่อแสดงคะแนนสะสม
-        JLabel scoreLabel = new JLabel("Score: " + totalScore );
-        scoreLabel.setBounds(300, 200, 100, 20);
-        panel.add(scoreLabel);
-        
+        panel.add(screen, BorderLayout.CENTER);
+
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         button_back = new JButton();
         button_back.setIcon(back);
@@ -308,15 +319,17 @@ public class SceneCutieghost {
         button_back.setBounds(0, 5, 95, 20);
         panel.add(button_back);
         frame.getContentPane().add(panel);
-        frame.setVisible(true); 
-        
+        frame.setVisible(true);
+        panel.requestFocus();
+
         button_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                sb.ResetScore();
+                
                 character = new Character_page(frame);
                 fireMoving = false;
+                sb.resetScore();
             }
         });
     }
