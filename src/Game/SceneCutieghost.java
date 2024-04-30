@@ -211,7 +211,7 @@ public class SceneCutieghost {
             while (true) {
                 try {
                     Thread.sleep(20);
-                    Positionx -= 5;
+                    Positionx -= 200;
                     goldappleLabel.setBounds(Positionx, Positiony, 250, 100);
                     if (random.nextInt(100) < 2) {
                         addNewGoldapple();
