@@ -82,7 +82,7 @@ public class SceneCutieghost {
 
         cutie = new Cutieghost();
         cutieghostLabel = new JLabel(cutie.getCutieghostImage());
-        cutieghostLabel.setBounds(cutie.getxPosition(), cutie.getyPosition(), 130, 100);
+        cutieghostLabel.setBounds(cutie.getxPosition(), cutie.getyPosition(), 100, 100);
         panel.add(cutieghostLabel);
         frame.add(panel);
         frame.setVisible(true);
@@ -115,7 +115,7 @@ public class SceneCutieghost {
                     }
                     Cutieghost.flyDown();
                 }
-                cutieghostLabel.setBounds(cutie.getxPosition(), Positiony, 130, cutie.getCutieghostHeight());
+                cutieghostLabel.setBounds(cutie.getxPosition(), Positiony, 100, cutie.getCutieghostHeight());
                 panel.revalidate();
                 panel.repaint();
             }
@@ -212,7 +212,7 @@ public class SceneCutieghost {
                 try {
                     Thread.sleep(20);
                     Positionx -= 200;
-                    goldappleLabel.setBounds(Positionx, Positiony, 250, 100);
+                    goldappleLabel.setBounds(Positionx, Positiony, 40, 40);
                     if (random.nextInt(100) < 2) {
                         addNewGoldapple();
                     }
@@ -226,7 +226,7 @@ public class SceneCutieghost {
 
         private void addNewGoldapple() {
             JLabel newGoldappleLabel = new JLabel(new ImageIcon("src/images/goldapple.png"));
-            newGoldappleLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 250, 100);
+            newGoldappleLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 40, 40);
             panel.add(newGoldappleLabel);
             
             Thread moveSingleGoldappleThread = new Thread(() -> {
