@@ -44,6 +44,7 @@ public class SceneCutieghost {
         panel.setLayout(null);
         score = new JLabel("Score:" );
         score.setFont(new Font("src/font/superpixel.ttf", Font.BOLD, 18));
+        score.setForeground(Color.WHITE);
         score.setBounds(580, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
@@ -194,7 +195,7 @@ public class SceneCutieghost {
             	        public void actionPerformed(ActionEvent e) {
             	        	cutie.setInvincibleCount(0); // ทำให้ผีไม่อมตะหลังจากเวลาผ่านไป
             	        }
-            	    });
+            	    });//AI
             	    invincibleTimer.setRepeats(false); // ตั้งให้ Timer ทำงานเพียงครั้งเดียว
             	    invincibleTimer.start(); // เริ่มต้นการนับเวลา
             	} 
