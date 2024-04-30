@@ -22,7 +22,7 @@ public class Scoreboard {
         if (SCORE >= MAX_SCORE) {
             MAX_SCORE = SCORE;
         }
-        return SCORE;
+        return MAX_SCORE;
     }
 
     public int getMaxScore() {

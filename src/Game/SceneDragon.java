@@ -3,6 +3,7 @@ package Game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -45,7 +46,9 @@ public class SceneDragon {
 
         panel.setLayout(null);
         score = new JLabel("Score:");
+  
         score.setFont(new Font("src/font/superpixel.ttf", Font.BOLD, 18));
+        
         score.setBounds(580, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
@@ -278,15 +281,15 @@ public class SceneDragon {
         gameOverPanel.setLayout(null);
         int finalScore = sb.getScore();
         JLabel scoreMessage = new JLabel("You: " + finalScore);
-        scoreMessage.setFont(new Font("Arial", Font.BOLD, 48));
+        scoreMessage.setFont(new Font("Arial", Font.BOLD, 54));
         scoreMessage.setForeground(new Color (40, 53, 147));
         scoreMessage.setBounds(400, 230, 500, 400);
         gameOverPanel.add(scoreMessage);
         
-        int Max_score = sb.getMaxScore();
+        
+        int Max_score = sb.MaxScore();
         JLabel Max_scoreMessage  = new JLabel("Best: " + Max_score);
-        Max_scoreMessage.setFont(new Font("Arial", Font.BOLD, 48));
-        Color myWhite = new Color(255, 255, 255); 
+        Max_scoreMessage.setFont(new Font("Arial", Font.BOLD, 54)); 
         Max_scoreMessage.setForeground(new Color (40, 53, 147));
         Max_scoreMessage.setBounds(180, 230, 500, 400);
         gameOverPanel.add(Max_scoreMessage);
