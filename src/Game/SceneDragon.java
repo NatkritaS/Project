@@ -276,7 +276,6 @@ public class SceneDragon {
         
         JPanel gameOverPanel = new JPanel();
         gameOverPanel.setLayout(null);
-        
         int finalScore = sb.getScore();
         JLabel scoreMessage = new JLabel("Your final score is: " + finalScore);
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
@@ -289,7 +288,7 @@ public class SceneDragon {
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
         gameOverPanel.add(screen, BorderLayout.CENTER);
-
+        
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
         JButton backButton = new JButton();
         backButton.setIcon(back);
@@ -298,16 +297,19 @@ public class SceneDragon {
         backButton.setFocusPainted(false);
         backButton.setOpaque(false);
         backButton.setBounds(0, 5, 95, 20);
+        
         gameOverPanel.add(backButton);
+        frame.add(backButton);
+        backButton.setVisible(true);
         
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
                 character = new Character_page(frame);
-                
             }
         });
+
 
         frame.getContentPane().add(gameOverPanel);
         frame.setVisible(true);
