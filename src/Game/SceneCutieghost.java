@@ -149,8 +149,7 @@ public class SceneCutieghost {
             heartLabels.add(heartLabel);
         }
         
-        // ตรวจสอบคะแนนสูงสุดเมื่อเริ่มต้นโปรแกรม
-        maxScore = sb.getMaxScore();
+   
     }
     
     private boolean fireMoving = true;

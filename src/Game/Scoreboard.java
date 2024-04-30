@@ -18,14 +18,5 @@ public class Scoreboard {
         return SCORE;
     }
 
-    public int MaxScore() {
-        if (SCORE >= MAX_SCORE) {
-            MAX_SCORE = SCORE;
-        }
-        return MAX_SCORE;
-    }
-
-    public int getMaxScore() {
-        return MAX_SCORE;
-    }
+    
 }
