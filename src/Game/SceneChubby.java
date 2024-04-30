@@ -18,12 +18,11 @@ public class SceneChubby {
     private Chubby chubby;
     private JLabel score;
     private Scoreboard sb;
-    private Lobby lobby;
     private JLabel goldfishLabel;
     private int goldfishCount = 0;
     private ArrayList<JLabel> heartLabels;
     private int heartcount;
-    private int finalScore = 0;
+
     
     protected static int Positiony = 350;
     protected static int Positionx = 400;
@@ -283,20 +282,13 @@ public class SceneChubby {
         
         JPanel gameOverPanel = new JPanel();
         gameOverPanel.setLayout(null);
+        // คะแนนสุดท้าย
         int finalScore = sb.getScore();
-        JLabel scoreMessage = new JLabel("You: " + finalScore);
+        JLabel scoreMessage = new JLabel("Final Score: " + finalScore);
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 54));
-        scoreMessage.setForeground(new Color (40, 53, 147));
-        scoreMessage.setBounds(400, 230, 500, 400);
+        scoreMessage.setForeground(new Color(40, 53, 147));
+        scoreMessage.setBounds(190, 230, 500, 400);
         gameOverPanel.add(scoreMessage);
-        
-        
-        int Max_score = sb.MaxScore();
-        JLabel Max_scoreMessage  = new JLabel("Best: " + Max_score);
-        Max_scoreMessage.setFont(new Font("Arial", Font.BOLD, 54)); 
-        Max_scoreMessage.setForeground(new Color (40, 53, 147));
-        Max_scoreMessage.setBounds(140, 230, 500, 400);
-        gameOverPanel.add(Max_scoreMessage);
 
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
         JLabel screen = new JLabel();
