@@ -23,6 +23,7 @@ public class SceneChubby {
     private int goldfishCount = 0;
     private ArrayList<JLabel> heartLabels;
     private int heartcount;
+    private int finalScore = 0;
     
     protected static int Positiony = 350;
     protected static int Positionx = 400;
@@ -44,8 +45,7 @@ public class SceneChubby {
         
         panel.setLayout(null);
         score = new JLabel("Score:");
-        Font font = new Font("src/font/superpixel.ttf", Font.BOLD, 18);
-        score.setFont(font);
+        score.setFont(new Font("src/font/superpixel.ttf", Font.BOLD, 18));
         score.setBounds(600, 10, 100, 20);
         panel.add(score);
         frame.add(panel);
@@ -253,9 +253,7 @@ public class SceneChubby {
                         score.setText("Score: " + addedScore); // แสดงคะแนนที่มีใหม่
                         
                         break;
-                        
                     }
-                    ;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -272,7 +270,7 @@ public class SceneChubby {
     }
     
 	private void updateHeartPositions() {
-		for (int i = 0; i < heartcount; i++) {
+		for (int i = 0; i < goldfishCount; i++) {
             JLabel heartLabel = heartLabels.get(i);
             heartLabel.setBounds(2 + i * 30, 20, 40, 50);
         }
@@ -281,60 +279,45 @@ public class SceneChubby {
     private void gameOver() {
     	frame.getContentPane().removeAll();
         frame.repaint();
-        sb.resetScore(); // เรียกใช้เมทอด resetScore() เพื่อรีเซ็ตคะแนนทุกครั้งที่เกมเสร็จสิ้น
         BubbleMoving = false;
-        panel.setLayout(new BorderLayout());
-        frame.setSize(700, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        frame.getContentPane().removeAll();
-        frame.repaint();
-        sb.resetScore();
-        BubbleMoving = false;
-        panel.setLayout(new BorderLayout());
-        frame.setSize(700, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-
-        panel.setLayout(null);
-
-        int addedScore = sb.CountScore();
-        JLabel scoreMessage = new JLabel("Your final score is: " + sb.CountScore());
+        
+        JPanel gameOverPanel = new JPanel();
+        gameOverPanel.setLayout(null);
+        
+        int finalScore = sb.getScore();
+        JLabel scoreMessage = new JLabel("Your final score is: " + finalScore);
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
         scoreMessage.setForeground(Color.BLACK);
         scoreMessage.setBounds(250, 200, 500, 400);
-        panel.add(scoreMessage);
+        gameOverPanel.add(scoreMessage);
 
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
         JLabel screen = new JLabel();
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
-        panel.add(screen, BorderLayout.CENTER);
+        gameOverPanel.add(screen, BorderLayout.CENTER);
 
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
-        button_back = new JButton();
-        button_back.setIcon(back);
-        button_back.setBorderPainted(false);
-        button_back.setContentAreaFilled(false);
-        button_back.setFocusPainted(false);
-        button_back.setOpaque(false);
-        button_back.setBounds(0, 5, 95, 20);
-        panel.add(button_back);
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
-        panel.requestFocus();
-
-        button_back.addActionListener(new ActionListener() {
+        JButton backButton = new JButton();
+        backButton.setIcon(back);
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setFocusPainted(false);
+        backButton.setOpaque(false);
+        backButton.setBounds(0, 5, 95, 20);
+        gameOverPanel.add(backButton);
+        
+        backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                
                 character = new Character_page(frame);
-                BubbleMoving = false;
-                sb.resetScore();
+                
             }
         });
+
+        frame.getContentPane().add(gameOverPanel);
+        frame.setVisible(true);
+        gameOverPanel.requestFocus();
     }
 }
