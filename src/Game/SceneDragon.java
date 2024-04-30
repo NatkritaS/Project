@@ -277,7 +277,7 @@ public class SceneDragon {
         JPanel gameOverPanel = new JPanel();
         gameOverPanel.setLayout(null);
         
-        int finalScore = sb.CountScore();
+        int finalScore = sb.getScore();
         JLabel scoreMessage = new JLabel("Your final score is: " + finalScore);
         scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
         scoreMessage.setForeground(Color.BLACK);
@@ -305,6 +305,7 @@ public class SceneDragon {
                 frame.getContentPane().removeAll();
                 frame.repaint();
                 character = new Character_page(frame);
+                
             }
         });
 
