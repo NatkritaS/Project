@@ -18,10 +18,11 @@ public class Scoreboard {
         return SCORE;
     }
 
-    public void MaxScore() {
+    public int MaxScore() {
         if (SCORE >= MAX_SCORE) {
             MAX_SCORE = SCORE;
         }
+        return SCORE;
     }
 
     public int getMaxScore() {
