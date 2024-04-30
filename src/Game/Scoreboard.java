@@ -1,9 +1,9 @@
 package Game;
 
 public class Scoreboard {
-    public static int COUNT = 0;
-    public static int SCORE = 0;
-    public static int MAX_SCORE = 0;
+    public int COUNT = 0;
+    public int SCORE = 0;
+    public int MAX_SCORE = 0;
 
     public int getScore() {
         return SCORE;
