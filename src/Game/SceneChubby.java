@@ -83,7 +83,7 @@ public class SceneChubby {
 
         chubby = new Chubby();
         chubbyLabel = new JLabel(chubby.getChubbyBirdImage());
-        chubbyLabel.setBounds(chubby.getxPosition(), chubby.getyPosition(), 90, 80);
+        chubbyLabel.setBounds(chubby.getxPosition(), chubby.getyPosition(), 130, 100);
         panel.add(chubbyLabel);
         frame.add(panel);
         frame.setVisible(true);
@@ -116,7 +116,7 @@ public class SceneChubby {
                     }
                     Chubby.flyDown();
                 }
-                chubbyLabel.setBounds(chubby.getxPosition(), Positiony, 130, 100);
+                chubbyLabel.setBounds(chubby.getxPosition(), Positiony, 130, chubby.getChubbyBirdHeight());
                 panel.revalidate();
                 panel.repaint();
             }
