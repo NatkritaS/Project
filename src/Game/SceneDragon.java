@@ -214,7 +214,7 @@ public class SceneDragon {
                 try {
                     Thread.sleep(20);
                     Positionx -= 5;
-                    fireballLabel.setBounds(Positionx, Positiony, 250, 100);
+                    fireballLabel.setBounds(Positionx, Positiony, 100, 70);
                     if (random.nextInt(100) < 2) {
                         addNewFireball();
                     }
@@ -228,7 +228,7 @@ public class SceneDragon {
 
     private void addNewFireball() {
         JLabel newFireballLabel = new JLabel(new ImageIcon("src/images/fireball.png"));
-        newFireballLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 250, 100);
+        newFireballLabel.setBounds(frame.getWidth(), random.nextInt(panel.getHeight()), 50, 70);
         panel.add(newFireballLabel);
 
         Thread moveSingleFireballThread = new Thread(() -> {
