@@ -295,9 +295,9 @@ public class SceneCutieghost {
         backButton.setContentAreaFilled(false);
         backButton.setFocusPainted(false);
         backButton.setOpaque(false);
-        backButton.setBounds(0, 5, 95, 20);                                      
-        gameOverPanel.add(backButton);                                           
-        frame.add(backButton);                                        
+        backButton.setBounds(0, 5, 95, 20);  
+        
+        gameOverPanel.add(backButton);                                                                              
         backButton.setVisible(true);
         
         backButton.addActionListener(new ActionListener() {
