@@ -278,11 +278,19 @@ public class SceneDragon {
         gameOverPanel.setLayout(null);
         
         int finalScore = sb.getScore();
-        JLabel scoreMessage = new JLabel("Your final score is: " + finalScore);
-        scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
-        scoreMessage.setForeground(Color.BLACK);
-        scoreMessage.setBounds(250, 200, 500, 400);
+        JLabel scoreMessage = new JLabel("You: " + finalScore);
+        scoreMessage.setFont(new Font("Arial", Font.BOLD, 48));
+        scoreMessage.setForeground(new Color (40, 53, 147));
+        scoreMessage.setBounds(400, 230, 500, 400);
         gameOverPanel.add(scoreMessage);
+        
+        int Max_score = sb.getMaxScore();
+        JLabel Max_scoreMessage  = new JLabel("Best: " + Max_score);
+        Max_scoreMessage.setFont(new Font("Arial", Font.BOLD, 48));
+        Color myWhite = new Color(255, 255, 255); 
+        Max_scoreMessage.setForeground(new Color (40, 53, 147));
+        Max_scoreMessage.setBounds(180, 230, 500, 400);
+        gameOverPanel.add(Max_scoreMessage);
 
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
         JLabel screen = new JLabel();
