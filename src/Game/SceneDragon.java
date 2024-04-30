@@ -291,7 +291,7 @@ public class SceneDragon {
         JLabel Max_scoreMessage  = new JLabel("Best: " + Max_score);
         Max_scoreMessage.setFont(new Font("Arial", Font.BOLD, 54)); 
         Max_scoreMessage.setForeground(new Color (40, 53, 147));
-        Max_scoreMessage.setBounds(180, 230, 500, 400);
+        Max_scoreMessage.setBounds(140, 230, 500, 400);
         gameOverPanel.add(Max_scoreMessage);
 
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");

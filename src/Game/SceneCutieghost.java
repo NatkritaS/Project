@@ -172,10 +172,7 @@ public class SceneCutieghost {
             }
         }
 
-        if (CutieghostPassedFire) {
-            int addedScore = sb.CountScore();
-            score.setText("Score: " + addedScore);
-        }
+       
 
         Rectangle cutieghostBounds = cutieghostLabel.getBounds();
         for (JLabel FireLabel : FireLabels) {
@@ -276,60 +273,55 @@ public class SceneCutieghost {
     private void gameOver() {
     	frame.getContentPane().removeAll();
         frame.repaint();
-        sb.resetScore(); // เรียกใช้เมทอด resetScore() เพื่อรีเซ็ตคะแนนทุกครั้งที่เกมเสร็จสิ้น
         fireMoving = false;
-        panel.setLayout(new BorderLayout());
-        frame.setSize(700, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        frame.getContentPane().removeAll();
-        frame.repaint();
-        sb.resetScore();
-        fireMoving = false;
-        panel.setLayout(new BorderLayout());
-        frame.setSize(700, 800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-
-        panel.setLayout(null);
-
-        int addedScore = sb.CountScore();
-        JLabel scoreMessage = new JLabel("Your final score is: " + sb.CountScore());
-        scoreMessage.setFont(new Font("Arial", Font.BOLD, 24));
-        scoreMessage.setForeground(Color.BLACK);
-        scoreMessage.setBounds(250, 200, 500, 400);
-        panel.add(scoreMessage);
+        
+        JPanel gameOverPanel = new JPanel();
+        gameOverPanel.setLayout(null);
+        int finalScore = sb.getScore();
+        JLabel scoreMessage = new JLabel("You: " + finalScore);
+        scoreMessage.setFont(new Font("Arial", Font.BOLD, 54));
+        scoreMessage.setForeground(new Color (40, 53, 147));
+        scoreMessage.setBounds(400, 230, 500, 400);
+        gameOverPanel.add(scoreMessage);
+        
+        
+        int Max_score = sb.MaxScore();
+        JLabel Max_scoreMessage  = new JLabel("Best: " + Max_score);
+        Max_scoreMessage.setFont(new Font("Arial", Font.BOLD, 54)); 
+        Max_scoreMessage.setForeground(new Color (40, 53, 147));
+        Max_scoreMessage.setBounds(140, 230, 500, 400);
+        gameOverPanel.add(Max_scoreMessage);
 
         ImageIcon BG_Scoreboard = new ImageIcon("src/images/Scoreboard.png");
         JLabel screen = new JLabel();
         screen.setIcon(BG_Scoreboard);
         screen.setBounds(0, 0, 700, 800);
-        panel.add(screen, BorderLayout.CENTER);
-
+        gameOverPanel.add(screen, BorderLayout.CENTER);
+        
         ImageIcon back = new ImageIcon("src\\images\\back_button.png");
-        button_back = new JButton();
-        button_back.setIcon(back);
-        button_back.setBorderPainted(false);
-        button_back.setContentAreaFilled(false);
-        button_back.setFocusPainted(false);
-        button_back.setOpaque(false);
-        button_back.setBounds(0, 5, 95, 20);
-        panel.add(button_back);
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
-        panel.requestFocus();
-
-        button_back.addActionListener(new ActionListener() {
+        JButton backButton = new JButton();
+        backButton.setIcon(back);
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setFocusPainted(false);
+        backButton.setOpaque(false);
+        backButton.setBounds(0, 5, 95, 20);
+        
+        gameOverPanel.add(backButton);
+        frame.add(backButton);
+        backButton.setVisible(true);
+        
+        backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 frame.repaint();
-                
                 character = new Character_page(frame);
-                fireMoving = false;
-                sb.resetScore();
             }
         });
+
+
+        frame.getContentPane().add(gameOverPanel);
+        frame.setVisible(true);
+        gameOverPanel.requestFocus();
     }
 }

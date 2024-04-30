@@ -28,10 +28,4 @@ public class Scoreboard {
     public int getMaxScore() {
         return MAX_SCORE;
     }
-
-    public int Eat() {
-        SCORE += 10;
-        MaxScore(); // เรียกเมทอด maxScore() เพื่อตรวจสอบและอัพเดทคะแนนสูงสุด
-        return SCORE;
-    }
 }
